@@ -87,7 +87,9 @@ class _MainMenuState extends State<MainMenu> {
                             Column(
                               children: [
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/plan');
+                                  },
                                   style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),
                                   child: Image.network('https://img.icons8.com/sf-regular/48/literature.png', width: 32, height: 32,),
                                 ),
@@ -98,7 +100,9 @@ class _MainMenuState extends State<MainMenu> {
                             Column(
                               children: [
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/track');
+                                  },
                                   style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),
                                   child: Image.network('https://img.icons8.com/material-outlined/24/graph.png', width: 32, height: 32,),
                                 ),
@@ -109,7 +113,9 @@ class _MainMenuState extends State<MainMenu> {
                             Column(
                               children: [
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/goals');
+                                  },
                                   style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),
                                   child: Image.network('https://img.icons8.com/fluency-systems-regular/48/trophy--v1.png', width: 32, height: 32,),
                                 ),
@@ -120,7 +126,9 @@ class _MainMenuState extends State<MainMenu> {
                             Column(
                               children: [
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/settings');
+                                  },
                                   style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),
                                   child: Image.network('https://img.icons8.com/?size=256&id=82535&format=png', width: 32, height: 32,),
                                 ),
