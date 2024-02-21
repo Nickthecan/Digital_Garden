@@ -46,7 +46,7 @@ class _PlanState extends State<Plan> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Month Budget", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
+                      child: Text("Month budget", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
@@ -237,7 +237,7 @@ class _PlanState extends State<Plan> {
                               elevation: 8,
                               foregroundColor: Colors.white, backgroundColor: Color(0xFF58E47F),
                             ),
-                            child: Text("Edit Budget"),
+                            child: Text("Change Catergories"),
                           ),
                         ),
                       ],

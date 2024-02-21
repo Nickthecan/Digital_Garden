@@ -5,6 +5,7 @@ import 'package:digital_garden/pages/plan.dart';
 import 'package:digital_garden/pages/track.dart';
 import 'package:digital_garden/pages/goals.dart';
 import 'package:digital_garden/pages/settings.dart';
+import 'package:digital_garden/pages/expense.dart';
 
 void main() => runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
@@ -17,6 +18,7 @@ void main() => runApp(MaterialApp(
       '/track': (context) => Track(),
       '/goals': (context) => Goals(),
       '/settings': (context) => Settings(),
+          '/expense': (context) => Expense(),
     }
 ));
 
