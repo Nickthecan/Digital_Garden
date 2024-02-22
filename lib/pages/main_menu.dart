@@ -114,7 +114,7 @@ class _MainMenuState extends State<MainMenu> {
                               children: [
                                 ElevatedButton(
                                   onPressed: () {
-                                    Navigator.pushNamed(context, '/goals');
+                                    Navigator.pushNamed(context, '/goal_page');
                                   },
                                   style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),
                                   child: Image.network('https://img.icons8.com/fluency-systems-regular/48/trophy--v1.png', width: 32, height: 32,),
