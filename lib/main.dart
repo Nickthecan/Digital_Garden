@@ -11,7 +11,7 @@ import 'package:digital_garden/pages/goal_page.dart';
 void main() => runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     debugShowMaterialGrid: false,
-    initialRoute: '/',
+    initialRoute: '/main_menu',
     routes: {
       '/': (context) => Login(),
       '/main_menu': (context) => MainMenu(),
