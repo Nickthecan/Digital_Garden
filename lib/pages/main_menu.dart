@@ -15,21 +15,25 @@ class _MainMenuState extends State<MainMenu> {
         slivers: [
           SliverToBoxAdapter(
             child: Container(
-              height: 300,
+              height: 407.143,
               color: Color(0xFF3C9FE7),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                     child: TextButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
                         child: Text("Sign out")),
                   ),
-                  SizedBox(height: 100,),
-                  Center(child: Text("Tree", style: TextStyle(fontWeight: FontWeight.bold),))],
+                  Center(
+                    child: Image(
+                      image: AssetImage('assets/dead5.png'),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
