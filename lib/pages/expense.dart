@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Expense extends StatefulWidget {
   const Expense({super.key});
@@ -24,7 +25,7 @@ class _ExpenseState extends State<Expense> {
               padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
               child: Container(
                 width: 500,
-                height: 250,
+                height: 300,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
@@ -44,12 +45,33 @@ class _ExpenseState extends State<Expense> {
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
                       child: Text("Cost of purchase", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
                     ),
-                    SizedBox(height: 50,),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                      child: TextField(
+                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*(\.[0-9]{0,2})?$')),
+                        ],
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
                       child: Text("Category", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
                     ),
-                    SizedBox(height: 50,),
+                    Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                        child: DropdownMenu(
+                          width: 335,
+                          dropdownMenuEntries: [
+                            DropdownMenuEntry(value: 'food_drink', label: 'Food and Drink'),
+                            DropdownMenuEntry(value: 'shopping', label: 'Shopping'),
+                            DropdownMenuEntry(value: 'entertainment', label: 'Entertainment'),
+                            DropdownMenuEntry(value: 'bills', label: 'Bills'),
+                            DropdownMenuEntry(value: 'gas', label: 'Gas'),
+                          ],
+                        )
+                    ),
                   ],
                 ),
               ),

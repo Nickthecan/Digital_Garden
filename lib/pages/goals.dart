@@ -9,6 +9,14 @@ class Goals extends StatefulWidget {
 }
 
 class _GoalsState extends State<Goals> {
+  late bool isAnnual;
+
+  @override
+  void initState() {
+    super.initState();
+    isAnnual = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -195,7 +203,7 @@ class _GoalsState extends State<Goals> {
                         child: TextField(
                           keyboardType: TextInputType.number,
                           inputFormatters: <TextInputFormatter>[
-                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                            FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*(\.[0-9]{0,2})?$')),
                           ],
                         ),
                       ),
@@ -209,7 +217,7 @@ class _GoalsState extends State<Goals> {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20, 50, 20, 30),
               child: Container(
-                height: 650,
+                height: isAnnual ? 750 : 650,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
@@ -247,14 +255,47 @@ class _GoalsState extends State<Goals> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ToggleButtonRow(),
+                          ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                  isAnnual = false;
+                              });
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: isAnnual ? Colors.white : Color(0xFF58E47F),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              elevation: 8,
+                            ),
+                            child: Text('One-time', style: TextStyle(color: isAnnual ? Color(0xFF58E47F) : Colors.white)),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  isAnnual = true;
+                                });
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: isAnnual ? Color(0xFF58E47F) : Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                elevation: 8, // No elevation
+                              ),
+                              child: Text('Annual', style: TextStyle(color: isAnnual ? Colors.white : Color(0xFF58E47F)),),
+                            ),
+                          ),
                         ],
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Spending Year", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                      child: Text("Spending ${isAnnual ? 'years' : 'year'}", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
@@ -263,9 +304,25 @@ class _GoalsState extends State<Goals> {
                         child: TextField(),
                       ),
                     ),
+                    Visibility(
+                        visible: isAnnual,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Number of years", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                              SizedBox(
+                                width: 325,
+                                child: TextField(),
+                              ),
+                            ]
+                          ),
+                        )
+                    ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Amount", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                      child: Text("${isAnnual ? 'Annual' : 'One-time'} amount", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
@@ -342,59 +399,3 @@ class CheckBoxState extends State<CheckBox> {
     );
   }
 }
-
-class ToggleButtonRow extends StatefulWidget {
-  @override
-  _ToggleButtonRowState createState() => _ToggleButtonRowState();
-}
-
-class _ToggleButtonRowState extends State<ToggleButtonRow> {
-  List<bool> isSelected = [true, false]; // Initial state, first button is selected
-
-  @override
-  Widget build(BuildContext context) {
-    return ToggleButtons(
-      children: [
-        ElevatedButton(
-          onPressed: () {
-            setState(() {
-              isSelected = [true, false];
-            });
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: isSelected[0] ? Color(0xFF58E47F) : Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-            elevation: 0,
-          ),
-          child: Text('One-time', style: TextStyle(color: isSelected[1] ? Color(0xFF58E47F) : Colors.white ),),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            setState(() {
-              isSelected = [false, true];
-            });
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: isSelected[1] ? Color(0xFF58E47F) : Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-            elevation: 8, // No elevation
-          ),
-          child: Text('Annual', style: TextStyle(color: isSelected[1] ? Colors.white : Color(0xFF58E47F)),),
-        ),
-      ],
-      isSelected: isSelected,
-      onPressed: (int index) {
-        setState(() {
-          for (int i = 0; i < isSelected.length; i++) {
-            isSelected[i] = i == index;
-          }
-        });
-      },
-    );
-  }
-}
-

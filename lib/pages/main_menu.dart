@@ -30,7 +30,7 @@ class _MainMenuState extends State<MainMenu> {
                   ),
                   Center(
                     child: Image(
-                      image: AssetImage('assets/dead5.png'),
+                      image: AssetImage('assets/tree5.png'),
                     ),
                   ),
                 ],

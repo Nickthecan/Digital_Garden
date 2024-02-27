@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
@@ -20,7 +21,10 @@ class _PlanState extends State<Plan> {
             child: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                child: Text("Spending Planner", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32, color: Colors.white),),
+                child: Text("Spending Planner", style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 32,
+                    color: Colors.white),),
               ),
             ),
           ),
@@ -46,17 +50,33 @@ class _PlanState extends State<Plan> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Month budget", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
+                      child: Text("Month budget", style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                          color: Color(0xF22F2F2F)),),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
-                      child: Text("\$0.00 left for # days", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                      child: Text("\$0.00 left for # days", style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                          color: Color(0xF22F2F2F)),),
                     ),
                     Center(
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-                        child: CircularPercentIndicator(radius: 140, lineWidth: 45, percent: 0.4, progressColor: Color(0xFF58E47F), backgroundColor: Color(0xFFD3D3D3), circularStrokeCap: CircularStrokeCap.round,
-                          center: Text('40%\nSpent', textAlign: TextAlign.center, style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Color(0xF22F2F2F), height: 1))),
+                        child: CircularPercentIndicator(radius: 140,
+                            lineWidth: 45,
+                            percent: 0.4,
+                            progressColor: Color(0xFF58E47F),
+                            backgroundColor: Color(0xFFD3D3D3),
+                            circularStrokeCap: CircularStrokeCap.round,
+                            center: Text('40%\nSpent',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 40,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xF22F2F2F),
+                                    height: 1))),
                       ),
                     ),
                     Padding(
@@ -64,8 +84,14 @@ class _PlanState extends State<Plan> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Spent", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                          Text("Spent", style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Color(0xF22F2F2F)),),
+                          Text("\$0.00", style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Color(0xF22F2F2F)),),
                         ],
                       ),
                     ),
@@ -74,8 +100,14 @@ class _PlanState extends State<Plan> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Remaining", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                          Text("Remaining", style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Color(0xF22F2F2F)),),
+                          Text("\$0.00", style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Color(0xF22F2F2F)),),
                         ],
                       ),
                     ),
@@ -84,8 +116,14 @@ class _PlanState extends State<Plan> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Your Budget", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                          Text("Your Budget", style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Color(0xF22F2F2F)),),
+                          Text("\$0.00", style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Color(0xF22F2F2F)),),
                         ],
                       ),
                     ),
@@ -95,13 +133,17 @@ class _PlanState extends State<Plan> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 30, 20, 20),
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              editBudget(context);
+                            },
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8), // Adjust the borderRadius as needed
+                                borderRadius: BorderRadius.circular(
+                                    8), // Adjust the borderRadius as needed
                               ),
                               elevation: 8,
-                              foregroundColor: Colors.white, backgroundColor: Color(0xFF58E47F),
+                              foregroundColor: Colors.white,
+                              backgroundColor: Color(0xFF58E47F),
                             ),
                             child: Text("Edit Budget"),
                           ),
@@ -135,95 +177,148 @@ class _PlanState extends State<Plan> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Categories", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
+                      child: Text("Categories", style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                          color: Color(0xF22F2F2F)),),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Food and Drink", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                      child: Text("Food and Drink", style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                          color: Color(0xF22F2F2F)),),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-                      child: LinearPercentIndicator(lineHeight: 15, progressColor: Color(0xFF58E47F), backgroundColor: Color(0xFFD3D3D3), percent: 0.37, barRadius: Radius.circular(30)),
+                      child: LinearPercentIndicator(lineHeight: 15,
+                          progressColor: Color(0xFF58E47F),
+                          backgroundColor: Color(0xFFD3D3D3),
+                          percent: 0.37,
+                          barRadius: Radius.circular(30)),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 20, 0),
-                          child: Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                          child: Text("\$0.00", style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Color(0xF22F2F2F)),),
                         ),
                       ],
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: Text("Shopping", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                      child: Text("Shopping", style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                          color: Color(0xF22F2F2F)),),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-                      child: LinearPercentIndicator(lineHeight: 15, progressColor: Color(0xFF58E47F), backgroundColor: Color(0xFFD3D3D3), percent: 0.37, barRadius: Radius.circular(30)),
+                      child: LinearPercentIndicator(lineHeight: 15,
+                          progressColor: Color(0xFF58E47F),
+                          backgroundColor: Color(0xFFD3D3D3),
+                          percent: 0.37,
+                          barRadius: Radius.circular(30)),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 20, 0),
-                          child: Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                          child: Text("\$0.00", style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Color(0xF22F2F2F)),),
                         ),
                       ],
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: Text("Entertainment", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                      child: Text("Entertainment", style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                          color: Color(0xF22F2F2F)),),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-                      child: LinearPercentIndicator(lineHeight: 15, progressColor: Color(0xFF58E47F), backgroundColor: Color(0xFFD3D3D3), percent: 0.37, barRadius: Radius.circular(30)),
+                      child: LinearPercentIndicator(lineHeight: 15,
+                          progressColor: Color(0xFF58E47F),
+                          backgroundColor: Color(0xFFD3D3D3),
+                          percent: 0.37,
+                          barRadius: Radius.circular(30)),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                          child: Text("\0.00", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                          child: Text("\0.00", style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Color(0xF22F2F2F)),),
                         ),
                       ],
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: Text("Bills", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                      child: Text("Bills", style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                          color: Color(0xF22F2F2F)),),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-                      child: LinearPercentIndicator(lineHeight: 15, progressColor: Color(0xFF58E47F), backgroundColor: Color(0xFFD3D3D3), percent: 0.37, barRadius: Radius.circular(30)),
+                      child: LinearPercentIndicator(lineHeight: 15,
+                          progressColor: Color(0xFF58E47F),
+                          backgroundColor: Color(0xFFD3D3D3),
+                          percent: 0.37,
+                          barRadius: Radius.circular(30)),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 20, 0),
-                          child: Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                          child: Text("\$0.00", style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Color(0xF22F2F2F)),),
                         ),
                       ],
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: Text("Gas", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                      child: Text("Gas", style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                          color: Color(0xF22F2F2F)),),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-                      child: LinearPercentIndicator(lineHeight: 15, progressColor: Color(0xFF58E47F), backgroundColor: Color(0xFFD3D3D3), percent: 0.37, barRadius: Radius.circular(30)),
+                      child: LinearPercentIndicator(lineHeight: 15,
+                          progressColor: Color(0xFF58E47F),
+                          backgroundColor: Color(0xFFD3D3D3),
+                          percent: 0.37,
+                          barRadius: Radius.circular(30)),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 20, 0),
-                          child: Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                          child: Text("\$0.00", style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Color(0xF22F2F2F)),),
                         ),
                       ],
                     ),
                     SizedBox(height: 30,),
-                    Row(
+                    /*Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Padding(
@@ -232,16 +327,18 @@ class _PlanState extends State<Plan> {
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8), // Adjust the borderRadius as needed
+                                borderRadius: BorderRadius.circular(
+                                    8), // Adjust the borderRadius as needed
                               ),
                               elevation: 8,
-                              foregroundColor: Colors.white, backgroundColor: Color(0xFF58E47F),
+                              foregroundColor: Colors.white,
+                              backgroundColor: Color(0xFF58E47F),
                             ),
-                            child: Text("Change Catergories"),
+                            child: Text("Change Categories"),
                           ),
                         ),
                       ],
-                    ),
+                    ),*/
                   ],
                 ),
               ),
@@ -251,4 +348,53 @@ class _PlanState extends State<Plan> {
       ),
     );
   }
+}
+
+  Future editBudget(BuildContext context) => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Center(child: Text("Edit Budget", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)))),
+        content: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text("\$", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+              child: Container(
+                width:110,
+                child: TextField(
+                  autofocus: true,
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*(\.[0-9]{0,2})?$')),
+                  ],
+                ),
+              ),
+            ),
+          ]
+        ),
+        actions: [
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                submit(context);
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8), // Adjust the borderRadius as needed
+                ),
+                elevation: 8,
+                foregroundColor: Colors.white, backgroundColor: Color(0xFF58E47F),
+              ),
+              child: Text("Update Budget"),
+            ),
+          ),
+        ],
+      )
+  );
+
+void submit(context) {
+  Navigator.pop(context);
 }
