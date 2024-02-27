@@ -1,4 +1,6 @@
+import 'package:digital_garden/Helpers/chart.dart';
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class MainMenu extends StatefulWidget {
   const MainMenu({super.key});
@@ -45,7 +47,7 @@ class _MainMenuState extends State<MainMenu> {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    stops: [0.0, 0.65, 0.65 , 1.0],
+                    stops: [0.0, 0.5, 0.5 , 1.0],
                     colors: [Color(0xFF58E47F), Color(0xFF58E47F) , Color(0xFFD2D2D2), Color(0xFFD2D2D2)],
                   )
               ),
@@ -53,9 +55,9 @@ class _MainMenuState extends State<MainMenu> {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 30, 0, 40),
+                    padding: const EdgeInsets.fromLTRB(20, 30, 20, 40),
                     child: Container(
-                      padding: EdgeInsets.fromLTRB(10, 10, 100, 0),
+                      padding: EdgeInsets.fromLTRB(10, 10, 20, 0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: [
@@ -75,8 +77,8 @@ class _MainMenuState extends State<MainMenu> {
                             Text("\$", style: TextStyle(color: Color(0xF22F2F2F), fontSize: 16, letterSpacing: 1, fontWeight: FontWeight.w500,)),
                             Text("Your spending as of Month, Day, Year", style: TextStyle(color: Color(0xF22F2F2F), fontSize: 12, fontWeight: FontWeight.w400)),
                             SizedBox(height: 50),
-                            Text("Chart", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold,)),
-                            SizedBox(height: 400),
+                            Chart(),
+                            SizedBox(height: 100),
                           ],
                       ),
                     ),
