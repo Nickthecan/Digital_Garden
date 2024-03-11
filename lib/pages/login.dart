@@ -1,4 +1,7 @@
+import 'package:digital_garden/features/auth_services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -13,7 +16,10 @@ class _LoginState extends State<Login> {
   late FocusNode pwFocusNode;
   late FocusNode confirmpwFocusNode;
   late double titleOpacity;
-  late bool isSignIn;
+  late bool isSignUp;
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  final AuthServices _auth = AuthServices();
 
   @override
   void initState() {
@@ -22,7 +28,7 @@ class _LoginState extends State<Login> {
     pwFocusNode = FocusNode();
     confirmpwFocusNode = FocusNode();
     titleOpacity = 1;
-    isSignIn = false;
+    isSignUp = false;
 
     textFocusNode.addListener(_handleFocus);
     pwFocusNode.addListener(_handleFocus);
@@ -31,7 +37,7 @@ class _LoginState extends State<Login> {
 
   void _handleFocus() {
     setState(() {
-      if (isSignIn) {
+      if (isSignUp) {
         containerOffset = (textFocusNode.hasFocus || pwFocusNode.hasFocus || confirmpwFocusNode.hasFocus) ? -225 : 0;
       }
       else {
@@ -46,6 +52,8 @@ class _LoginState extends State<Login> {
     textFocusNode.dispose();
     pwFocusNode.dispose();
     confirmpwFocusNode.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
@@ -104,13 +112,14 @@ class _LoginState extends State<Login> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Text("Username", style: TextStyle(
+                        Text("Email", style: TextStyle(
                           color: Color(0xF22F2F2F),
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                         )),
                         TextField(
                           focusNode: textFocusNode,
+                          controller: _emailController,
                         ),
                         SizedBox(height: 20,),
                         Text("Password", style: TextStyle(
@@ -121,9 +130,10 @@ class _LoginState extends State<Login> {
                         TextField(
                           obscureText: true,
                           focusNode: pwFocusNode,
+                          controller: _passwordController,
                         ),
                         Visibility(
-                            visible: isSignIn,
+                            visible: isSignUp,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -144,7 +154,16 @@ class _LoginState extends State<Login> {
                         SizedBox(height: 20,),
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/main_menu');
+                            if (isSignUp) {
+                              _signUp();
+                              _emailController.clear();
+                              _passwordController.clear();
+                            }
+                            else {
+                              _signIn();
+                              _emailController.clear();
+                              _passwordController.clear();
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
@@ -153,7 +172,7 @@ class _LoginState extends State<Login> {
                             elevation: 8,
                             foregroundColor: Colors.white, backgroundColor: Color(0xFF58E47F),
                           ),
-                          child: Text("Sign ${isSignIn ? 'up' : 'in'}"),
+                          child: Text("Sign ${isSignUp ? 'up' : 'in'}"),
                         ),
                       ],
                     ),
@@ -164,10 +183,10 @@ class _LoginState extends State<Login> {
                     transform: Matrix4.translationValues(0, containerOffset, 0),
                     child: TextButton(onPressed: () {
                       setState(() {
-                        isSignIn = !isSignIn;
+                        isSignUp = !isSignUp;
                       });
                     },
-                        child: Text("Sign ${isSignIn ? 'in' : 'up'}", style: TextStyle(color: Color(0xF22F2F2F)))
+                        child: Text("Sign ${isSignUp ? 'in' : 'up'}", style: TextStyle(color: Color(0xF22F2F2F)))
                     ),
                   ),
                 ],
@@ -178,7 +197,37 @@ class _LoginState extends State<Login> {
       ),
     );
   }
+
+  void _signIn() async {
+    String email = _emailController.text;
+    String password = _passwordController.text;
+
+    User? user = await _auth.signIn(email, password);
+
+    if (user != null) {
+      print("User is successfully created");
+      Navigator.pushNamed(context, "/main_menu");
+    }
+    else {
+      print("Error occurred");
+    }
+  }
+  void _signUp() async {
+    String email = _emailController.text;
+    String password = _passwordController.text;
+
+    User? user = await _auth.signUp(email, password);
+
+    if (user != null) {
+      print("User is successfully created");
+      Navigator.pushNamed(context, "/main_menu");
+    }
+    else {
+      print("Error occurred");
+    }
+  }
 }
+
 
 
 

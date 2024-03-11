@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "132809015904",
+    "project_id": "digital-garden-de4ed",
+    "storage_bucket": "digital-garden-de4ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132809015904:android:56630e4223d67308dc7905",
+        "android_client_info": {
+          "package_name": "nickthecan.com.digital_garden"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5Mhxe9VO78xJzt6AlKrW5CpBktzkWPck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

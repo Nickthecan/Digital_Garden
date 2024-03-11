@@ -1,6 +1,7 @@
 import 'package:digital_garden/Helpers/chart.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fl_chart/fl_chart.dart';
+
 
 class MainMenu extends StatefulWidget {
   const MainMenu({super.key});
@@ -10,6 +11,7 @@ class MainMenu extends StatefulWidget {
 }
 
 class _MainMenuState extends State<MainMenu> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,13 +28,14 @@ class _MainMenuState extends State<MainMenu> {
                     padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                     child: TextButton(
                         onPressed: () {
+                          FirebaseAuth.instance.signOut();
                           Navigator.pop(context);
                         },
                         child: Text("Sign out")),
                   ),
                   Center(
                     child: Image(
-                      image: AssetImage('assets/tree5.png'),
+                      image: AssetImage('assets/dead5.png'),
                     ),
                   ),
                 ],
