@@ -1,7 +1,7 @@
 import 'package:digital_garden/features/auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_app_check/firebase_app_check.dart';
+
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -12,24 +12,29 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   double containerOffset = 0;
+  late FocusNode userNameFocusNode;
   late FocusNode textFocusNode;
   late FocusNode pwFocusNode;
   late FocusNode confirmpwFocusNode;
   late double titleOpacity;
   late bool isSignUp;
+  TextEditingController _userNameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  TextEditingController _pwMatchController = TextEditingController();
   final AuthServices _auth = AuthServices();
 
   @override
   void initState() {
     super.initState();
+    userNameFocusNode = FocusNode();
     textFocusNode = FocusNode();
     pwFocusNode = FocusNode();
     confirmpwFocusNode = FocusNode();
     titleOpacity = 1;
     isSignUp = false;
 
+    userNameFocusNode.addListener(_handleFocus);
     textFocusNode.addListener(_handleFocus);
     pwFocusNode.addListener(_handleFocus);
     confirmpwFocusNode.addListener(_handleFocus);
@@ -38,7 +43,7 @@ class _LoginState extends State<Login> {
   void _handleFocus() {
     setState(() {
       if (isSignUp) {
-        containerOffset = (textFocusNode.hasFocus || pwFocusNode.hasFocus || confirmpwFocusNode.hasFocus) ? -225 : 0;
+        containerOffset = (userNameFocusNode.hasFocus || textFocusNode.hasFocus || pwFocusNode.hasFocus || confirmpwFocusNode.hasFocus) ? -275 : 0;
       }
       else {
         containerOffset = (textFocusNode.hasFocus || pwFocusNode.hasFocus || confirmpwFocusNode.hasFocus) ? -150 : 0;
@@ -96,7 +101,7 @@ class _LoginState extends State<Login> {
                     duration: Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
                     transform: Matrix4.translationValues(0, containerOffset, 0),
-                    padding: EdgeInsets.fromLTRB(10, 10, 10, 50),
+                    padding: EdgeInsets.fromLTRB(10, 10, 10, 30),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
@@ -112,6 +117,26 @@ class _LoginState extends State<Login> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
+                        Visibility(
+                          visible: isSignUp,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 20,),
+                              Text("Username", style: TextStyle(
+                                color: Color(0xF22F2F2F),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              )),
+                              TextField (
+                                focusNode: userNameFocusNode,
+                                controller: _userNameController,
+                              ),
+
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 10,),
                         Text("Email", style: TextStyle(
                           color: Color(0xF22F2F2F),
                           fontSize: 16,
@@ -121,7 +146,7 @@ class _LoginState extends State<Login> {
                           focusNode: textFocusNode,
                           controller: _emailController,
                         ),
-                        SizedBox(height: 20,),
+                        SizedBox(height: 10,),
                         Text("Password", style: TextStyle(
                           color: Color(0xF22F2F2F),
                           fontSize: 16,
@@ -137,7 +162,7 @@ class _LoginState extends State<Login> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(height: 20,),
+                                SizedBox(height: 10,),
                                 Text("Confirm Password", style: TextStyle(
                                   color: Color(0xF22F2F2F),
                                   fontSize: 16,
@@ -146,18 +171,21 @@ class _LoginState extends State<Login> {
                                 TextField(
                                   obscureText: true,
                                   focusNode: confirmpwFocusNode,
+                                  controller: _pwMatchController,
                                 ),
 
                               ],
                             ),
                         ),
-                        SizedBox(height: 20,),
+                        SizedBox(height: 10,),
                         ElevatedButton(
                           onPressed: () {
                             if (isSignUp) {
                               _signUp();
+                              _userNameController.clear();
                               _emailController.clear();
                               _passwordController.clear();
+                              _pwMatchController.clear();
                             }
                             else {
                               _signIn();
@@ -213,17 +241,24 @@ class _LoginState extends State<Login> {
     }
   }
   void _signUp() async {
+    String userName = _userNameController.text;
     String email = _emailController.text;
     String password = _passwordController.text;
+    String pwMatch = _pwMatchController.text;
 
-    User? user = await _auth.signUp(email, password);
+    if (password == pwMatch) {
+      User? user = await _auth.signUp(email, password);
 
-    if (user != null) {
-      print("User is successfully created");
-      Navigator.pushNamed(context, "/main_menu");
+      if (user != null) {
+        print("User is successfully created");
+        Navigator.pushNamed(context, "/main_menu");
+      }
+      else {
+        print("Error occurred");
+      }
     }
     else {
-      print("Error occurred");
+      print("Passwords do not match");
     }
   }
 }
