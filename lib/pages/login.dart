@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:digital_garden/features/auth_services.dart';
+import 'package:digital_garden/features/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +25,7 @@ class _LoginState extends State<Login> {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _pwMatchController = TextEditingController();
   final AuthServices _auth = AuthServices();
+
 
   @override
   void initState() {
@@ -233,8 +236,18 @@ class _LoginState extends State<Login> {
     User? user = await _auth.signIn(email, password);
 
     if (user != null) {
-      print("User is successfully created");
-      Navigator.pushNamed(context, "/main_menu");
+      DocumentSnapshot userSnapshot = await FirebaseFirestore.instance.collection('user').doc(user.uid).get();
+      if (userSnapshot.exists) {
+        String username = userSnapshot['username'];
+        UserModel userModel = UserModel(uid: user.uid, username: username);
+        print("User is successfully logged in");
+        print(userModel.uid);
+        print(userModel.username);
+        Navigator.pushNamed(context, "/main_menu");
+      }
+      else{
+        print('User data not found in Firestore Database');
+      }
     }
     else {
       print("Error occurred");
@@ -250,7 +263,13 @@ class _LoginState extends State<Login> {
       User? user = await _auth.signUp(email, password);
 
       if (user != null) {
+        await FirebaseFirestore.instance.collection('user').doc(user.uid).set({
+          'username': userName,
+        });
+        UserModel userModel = UserModel(uid: user.uid, username: userName);
         print("User is successfully created");
+        print(userModel.uid);
+        print(userModel.username);
         Navigator.pushNamed(context, "/main_menu");
       }
       else {
