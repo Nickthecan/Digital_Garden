@@ -185,15 +185,9 @@ class _LoginState extends State<Login> {
                           onPressed: () {
                             if (isSignUp) {
                               _signUp();
-                              _userNameController.clear();
-                              _emailController.clear();
-                              _passwordController.clear();
-                              _pwMatchController.clear();
                             }
                             else {
                               _signIn();
-                              _emailController.clear();
-                              _passwordController.clear();
                             }
                           },
                           style: ElevatedButton.styleFrom(
@@ -243,7 +237,12 @@ class _LoginState extends State<Login> {
         print("User is successfully logged in");
         print(userModel.uid);
         print(userModel.username);
-        Navigator.pushNamed(context, "/main_menu");
+        Navigator.pushNamed(context, "/main_menu", arguments: {
+          'uid': user.uid,
+          'username': username,
+        });
+        _emailController.clear();
+        _passwordController.clear();
       }
       else{
         print('User data not found in Firestore Database');
@@ -271,6 +270,10 @@ class _LoginState extends State<Login> {
         print(userModel.uid);
         print(userModel.username);
         Navigator.pushNamed(context, "/main_menu");
+        _userNameController.clear();
+        _emailController.clear();
+        _passwordController.clear();
+        _pwMatchController.clear();
       }
       else {
         print("Error occurred");

@@ -1,6 +1,11 @@
+import 'dart:ffi';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:digital_garden/Helpers/chart.dart';
+import 'package:digital_garden/features/models/budget_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:digital_garden/features/models/user_model.dart';
 
 
 class MainMenu extends StatefulWidget {
@@ -11,6 +16,16 @@ class MainMenu extends StatefulWidget {
 }
 
 class _MainMenuState extends State<MainMenu> {
+  late UserModel userModel;
+  late Map data;
+
+  @override
+  void initState() {
+    super.initState();
+    data = ModalRoute.of(context)!.settings.arguments as Map;
+    userModel = UserModel(uid: data['uid'], username: data['username']);
+    _fetchBudget();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -157,5 +172,27 @@ class _MainMenuState extends State<MainMenu> {
         ],
       ),
     );
+  }
+  void _fetchBudget() {
+    Future.delayed(Duration.zero, () async {
+      try {
+        DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('Budget').doc(userModel.uid).get();
+        if (!documentSnapshot.exists) {
+          BudgetModel budgetModel = BudgetModel(uid: userModel.uid, totalAmount: 0.0, amountRemaining: 0.0, amountSpent: 0.0);
+        }
+        else {
+          Map<String, dynamic> budgetData = documentSnapshot.data() as Map<String, dynamic>;
+          double totalAmount = budgetData['totalAmount'];
+          double amountRemaining = budgetData['amountRemaining'];
+          double amountSpent = budgetData['amountSpent'];
+
+          BudgetModel budgetModel = BudgetModel(uid: userModel.uid, totalAmount: totalAmount, amountRemaining: amountRemaining, amountSpent: amountSpent);
+        }
+      }
+      catch (e) {
+        print('error occurred whilst fetching the budget');
+        print(e.toString());
+      }
+    });
   }
 }
