@@ -17,18 +17,13 @@ class MainMenu extends StatefulWidget {
 
 class _MainMenuState extends State<MainMenu> {
   late UserModel userModel;
-  late Map data;
-
-  @override
-  void initState() {
-    super.initState();
-    data = ModalRoute.of(context)!.settings.arguments as Map;
-    userModel = UserModel(uid: data['uid'], username: data['username']);
-    _fetchBudget();
-  }
 
   @override
   Widget build(BuildContext context) {
+    Map data = ModalRoute.of(context)!.settings.arguments as Map;
+    userModel = UserModel(uid: data['uid'], username: data['username']);
+    _fetchBudget();
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -176,9 +171,19 @@ class _MainMenuState extends State<MainMenu> {
   void _fetchBudget() {
     Future.delayed(Duration.zero, () async {
       try {
-        DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('Budget').doc(userModel.uid).get();
+        DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('budget').doc(userModel.uid).get();
         if (!documentSnapshot.exists) {
+          await FirebaseFirestore.instance.collection('budget').doc(userModel.uid).set({
+            'amountRemaining': 0.0,
+            'amountSpent': 0.0,
+            'totalAmount': 0.0,
+          });
           BudgetModel budgetModel = BudgetModel(uid: userModel.uid, totalAmount: 0.0, amountRemaining: 0.0, amountSpent: 0.0);
+          print('New Budget Created');
+          print(budgetModel.uid);
+          print(budgetModel.totalAmount);
+          print(budgetModel.amountRemaining);
+          print(budgetModel.amountSpent);
         }
         else {
           Map<String, dynamic> budgetData = documentSnapshot.data() as Map<String, dynamic>;
@@ -187,6 +192,11 @@ class _MainMenuState extends State<MainMenu> {
           double amountSpent = budgetData['amountSpent'];
 
           BudgetModel budgetModel = BudgetModel(uid: userModel.uid, totalAmount: totalAmount, amountRemaining: amountRemaining, amountSpent: amountSpent);
+          print('Budget Loaded');
+          print(budgetModel.uid);
+          print(budgetModel.totalAmount);
+          print(budgetModel.amountRemaining);
+          print(budgetModel.amountSpent);
         }
       }
       catch (e) {
