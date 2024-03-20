@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:digital_garden/features/models/budget_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import '../features/models/user_model.dart';
+import 'dart:core';
 
 class Plan extends StatefulWidget {
   const Plan({super.key});
@@ -11,8 +15,71 @@ class Plan extends StatefulWidget {
 }
 
 class _PlanState extends State<Plan> {
+  late UserModel userModel;
+  late BudgetModel budgetModel;
+  TextEditingController _budgetController = TextEditingController();
+
+  Future editBudget(BuildContext context) => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Center(child: Text("Edit Budget", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)))),
+        content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text("\$", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+                child: Container(
+                  width:110,
+                  child: TextField(
+                    autofocus: true,
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*(\.[0-9]{0,2})?$')),
+                    ],
+                    controller: _budgetController,
+                  ),
+                ),
+              ),
+            ]
+        ),
+        actions: [
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  double newBudget = double.parse(_budgetController.text);
+                  updateBudgetDB(newBudget);
+                  budgetModel.totalAmount = newBudget;
+                  submit(context);
+                });
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8), // Adjust the borderRadius as needed
+                ),
+                elevation: 8,
+                foregroundColor: Colors.white, backgroundColor: Color(0xFF58E47F),
+              ),
+              child: Text("Update Budget"),
+            ),
+          ),
+        ],
+      )
+  );
+
+  void submit(context) {
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
+    Map data = ModalRoute.of(context)!.settings.arguments as Map;
+    userModel = data['userModel'];
+    budgetModel = data['budgetModel'];
+
     return Scaffold(
       backgroundColor: Color(0xFFD3D3D3),
       body: CustomScrollView(
@@ -57,7 +124,7 @@ class _PlanState extends State<Plan> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
-                      child: Text("\$0.00 left for # days", style: TextStyle(
+                      child: Text("\$${budgetModel.calculateAmountRemaining().toStringAsFixed(2)} left for ${getRemainingDays()} days", style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
                           color: Color(0xF22F2F2F)),),
@@ -88,7 +155,7 @@ class _PlanState extends State<Plan> {
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F)),),
-                          Text("\$0.00", style: TextStyle(
+                          Text("\$${budgetModel.amountSpent.toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F)),),
@@ -104,7 +171,7 @@ class _PlanState extends State<Plan> {
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F)),),
-                          Text("\$0.00", style: TextStyle(
+                          Text("\$${budgetModel.calculateAmountRemaining().toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F)),),
@@ -120,7 +187,7 @@ class _PlanState extends State<Plan> {
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F)),),
-                          Text("\$0.00", style: TextStyle(
+                          Text("\$${budgetModel.totalAmount.toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F)),),
@@ -159,7 +226,7 @@ class _PlanState extends State<Plan> {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
               child: Container(
-                height: 650,
+                height: 575,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
@@ -348,53 +415,24 @@ class _PlanState extends State<Plan> {
       ),
     );
   }
-}
 
-  Future editBudget(BuildContext context) => showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Center(child: Text("Edit Budget", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)))),
-        content: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text("\$", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-              child: Container(
-                width:110,
-                child: TextField(
-                  autofocus: true,
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-                  keyboardType: TextInputType.number,
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*(\.[0-9]{0,2})?$')),
-                  ],
-                ),
-              ),
-            ),
-          ]
-        ),
-        actions: [
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                submit(context);
-              },
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8), // Adjust the borderRadius as needed
-                ),
-                elevation: 8,
-                foregroundColor: Colors.white, backgroundColor: Color(0xFF58E47F),
-              ),
-              child: Text("Update Budget"),
-            ),
-          ),
-        ],
-      )
-  );
+  getRemainingDays() {
+    DateTime now = DateTime.now();
+    DateTime lastDayOfMonth = DateTime(now.year, now.month + 1, 0);
+    int daysRemaining = lastDayOfMonth.day - now.day;
+    return daysRemaining;
+  }
 
-void submit(context) {
-  Navigator.pop(context);
+  void updateBudgetDB(double totalBudget) async {
+    try {
+      await FirebaseFirestore.instance.collection('budget').doc(userModel.uid).update({
+        'totalAmount': totalBudget,
+      });
+      print("Budget's total amount has been updated in the DB");
+    }
+    catch (e) {
+      print('Could not Access the DB to update the total Amount');
+      print(e.toString());
+    }
+  }
 }

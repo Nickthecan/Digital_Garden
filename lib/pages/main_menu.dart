@@ -17,6 +17,7 @@ class MainMenu extends StatefulWidget {
 
 class _MainMenuState extends State<MainMenu> {
   late UserModel userModel;
+  late BudgetModel budgetModel;
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +108,10 @@ class _MainMenuState extends State<MainMenu> {
                               children: [
                                 ElevatedButton(
                                   onPressed: () {
-                                    Navigator.pushNamed(context, '/plan');
+                                    Navigator.pushNamed(context, '/plan', arguments: {
+                                      'userModel': userModel,
+                                      'budgetModel': budgetModel,
+                                    });
                                   },
                                   style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),
                                   child: Image.network('https://img.icons8.com/sf-regular/48/literature.png', width: 32, height: 32,),
@@ -120,7 +124,10 @@ class _MainMenuState extends State<MainMenu> {
                               children: [
                                 ElevatedButton(
                                   onPressed: () {
-                                    Navigator.pushNamed(context, '/track');
+                                    Navigator.pushNamed(context, '/track', arguments: {
+                                      'userModel': userModel,
+                                      'budgetModel': budgetModel,
+                                    });
                                   },
                                   style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),
                                   child: Image.network('https://img.icons8.com/material-outlined/24/graph.png', width: 32, height: 32,),
@@ -133,7 +140,9 @@ class _MainMenuState extends State<MainMenu> {
                               children: [
                                 ElevatedButton(
                                   onPressed: () {
-                                    Navigator.pushNamed(context, '/goal_page');
+                                    Navigator.pushNamed(context, '/goal_page', arguments: {
+                                      'userModel': userModel,
+                                    });
                                   },
                                   style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),
                                   child: Image.network('https://img.icons8.com/fluency-systems-regular/48/trophy--v1.png', width: 32, height: 32,),
@@ -146,7 +155,9 @@ class _MainMenuState extends State<MainMenu> {
                               children: [
                                 ElevatedButton(
                                   onPressed: () {
-                                    Navigator.pushNamed(context, '/settings');
+                                    Navigator.pushNamed(context, '/settings', arguments: {
+                                      'userModel': userModel,
+                                    });
                                   },
                                   style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),
                                   child: Image.network('https://img.icons8.com/?size=256&id=82535&format=png', width: 32, height: 32,),
@@ -178,7 +189,7 @@ class _MainMenuState extends State<MainMenu> {
             'amountSpent': 0.0,
             'totalAmount': 0.0,
           });
-          BudgetModel budgetModel = BudgetModel(uid: userModel.uid, totalAmount: 0.0, amountRemaining: 0.0, amountSpent: 0.0);
+          budgetModel = BudgetModel(uid: userModel.uid, totalAmount: 0.0, amountRemaining: 0.0, amountSpent: 0.0);
           print('New Budget Created');
           print(budgetModel.uid);
           print(budgetModel.totalAmount);
@@ -191,7 +202,7 @@ class _MainMenuState extends State<MainMenu> {
           double amountRemaining = budgetData['amountRemaining'];
           double amountSpent = budgetData['amountSpent'];
 
-          BudgetModel budgetModel = BudgetModel(uid: userModel.uid, totalAmount: totalAmount, amountRemaining: amountRemaining, amountSpent: amountSpent);
+          budgetModel = BudgetModel(uid: userModel.uid, totalAmount: totalAmount, amountRemaining: amountRemaining, amountSpent: amountSpent);
           print('Budget Loaded');
           print(budgetModel.uid);
           print(budgetModel.totalAmount);
