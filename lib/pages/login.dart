@@ -4,6 +4,8 @@ import 'package:digital_garden/features/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../features/models/budget_model.dart';
+
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -235,12 +237,22 @@ class _LoginState extends State<Login> {
         String username = userSnapshot['username'];
         UserModel userModel = UserModel(uid: user.uid, username: username);
         print("User is successfully logged in");
-        print(userModel.uid);
-        print(userModel.username);
-        Navigator.pushNamed(context, "/main_menu", arguments: {
-          'uid': user.uid,
-          'username': username,
-        });
+        print('userID: ${userModel.uid}');
+        print('username: ${userModel.username}');
+
+        BudgetModel? budgetModel = await _fetchBudget(userModel);
+        print('Amount Spent: ${budgetModel?.amountSpent}');
+        print('Amount Remaining ${budgetModel?.amountRemaining}');
+        print('Total Amount ${budgetModel?.totalAmount}');
+        if (budgetModel != null) {
+          Navigator.pushNamed(context, "/main_menu", arguments: {
+            'userModel': userModel,
+            'budgetModel': budgetModel,
+          });
+        }
+        else {
+          print("Failed to fetch budget");
+        }
         _emailController.clear();
         _passwordController.clear();
       }
@@ -267,9 +279,22 @@ class _LoginState extends State<Login> {
         });
         UserModel userModel = UserModel(uid: user.uid, username: userName);
         print("User is successfully created");
-        print(userModel.uid);
-        print(userModel.username);
-        Navigator.pushNamed(context, "/main_menu");
+        print('userID: ${userModel.uid}');
+        print('username: ${userModel.username}');
+
+        BudgetModel? budgetModel = await _fetchBudget(userModel);
+        print('Amount Spent: ${budgetModel?.amountSpent}');
+        print('Amount Remaining ${budgetModel?.amountRemaining}');
+        print('Total Amount ${budgetModel?.totalAmount}');
+        if (budgetModel != null) {
+          Navigator.pushNamed(context, "/main_menu", arguments: {
+            'userModel': userModel,
+            'budgetModel': budgetModel,
+          });
+        }
+        else {
+         print("Failed to fetch budget");
+        }
         _userNameController.clear();
         _emailController.clear();
         _passwordController.clear();
@@ -281,6 +306,34 @@ class _LoginState extends State<Login> {
     }
     else {
       print("Passwords do not match");
+    }
+  }
+
+  _fetchBudget(UserModel userModel) async {
+    try {
+      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('budget').doc(userModel.uid).get();
+      if (documentSnapshot.exists) {
+        Map<String, dynamic> budgetData = documentSnapshot.data() as Map<String, dynamic>;
+        double totalAmount = budgetData['totalAmount'];
+        double amountRemaining = budgetData['amountRemaining'];
+        double amountSpent = budgetData['amountSpent'];
+
+        print('Budget Loaded');
+        return BudgetModel(uid: userModel.uid, totalAmount: totalAmount, amountRemaining: amountRemaining, amountSpent: amountSpent);
+      }
+      else {
+        FirebaseFirestore.instance.collection('budget').doc(userModel.uid).set({
+          'amountRemaining': 0.0,
+          'amountSpent': 0.0,
+          'totalAmount': 0.0,
+        });
+        print('New Budget Created');
+        return BudgetModel(uid: userModel.uid, totalAmount: 0.0, amountRemaining: 0.0, amountSpent: 0.0);
+      }
+    }
+    catch (e) {
+      print('error occurred whilst fetching the budget');
+      print(e.toString());
     }
   }
 }
