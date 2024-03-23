@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:digital_garden/features/models/user_model.dart';
+import 'package:digital_garden/features/models/budget_model.dart';
+import 'package:digital_garden/features/models/purchase_model.dart';
 
 class Track extends StatefulWidget {
   const Track({super.key});
@@ -9,8 +12,16 @@ class Track extends StatefulWidget {
 }
 
 class _TrackState extends State<Track> {
+  late UserModel userModel;
+  late BudgetModel budgetModel;
+  List<PurchaseModel> purchases = [];
+
   @override
   Widget build(BuildContext context) {
+    Map data = ModalRoute.of(context)!.settings.arguments as Map;
+    userModel = data['userModel'];
+    budgetModel = data['budgetModel'];
+
     return Scaffold(
       backgroundColor: Color(0xFFD3D3D3),
       body: CustomScrollView(
@@ -58,7 +69,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("1", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -70,7 +81,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("2", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -82,7 +93,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("3", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -94,7 +105,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("4", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -106,7 +117,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("5", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -118,7 +129,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("6", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -130,7 +141,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("7", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -142,7 +153,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("8", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -154,7 +165,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("9", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -166,7 +177,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("10", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -178,7 +189,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("11", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -190,7 +201,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("12", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -202,7 +213,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("13", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -214,7 +225,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("14", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -226,7 +237,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("15", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -238,7 +249,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("16", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -250,7 +261,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("17", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -262,7 +273,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("18", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -274,7 +285,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("19", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -286,7 +297,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("20", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -298,7 +309,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("21", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -310,7 +321,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("22", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -322,7 +333,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("23", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -334,7 +345,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("24", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -346,7 +357,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("25", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -358,7 +369,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("26", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -370,7 +381,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("27", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -382,7 +393,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("28", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -394,7 +405,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("29", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -406,7 +417,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("30", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -418,7 +429,7 @@ class _TrackState extends State<Track> {
                         children: [
                           Text("31", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                           Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                           Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                         ],
                       ),
@@ -459,7 +470,7 @@ class _TrackState extends State<Track> {
                           children: [
                             Text("Week 1", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                             Expanded(
-                                child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                                child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                             Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                           ],
                         ),
@@ -471,7 +482,7 @@ class _TrackState extends State<Track> {
                           children: [
                             Text("Week 2", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                             Expanded(
-                                child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                                child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                             Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                           ],
                         ),
@@ -483,7 +494,7 @@ class _TrackState extends State<Track> {
                           children: [
                             Text("Week 3", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                             Expanded(
-                                child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                                child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                             Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                           ],
                         ),
@@ -495,7 +506,7 @@ class _TrackState extends State<Track> {
                           children: [
                             Text("Week 4", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                             Expanded(
-                                child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                                child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                             Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                           ],
                         ),
@@ -507,7 +518,7 @@ class _TrackState extends State<Track> {
                           children: [
                             Text("Week 5", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                             Expanded(
-                                child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.37, barRadius: Radius.circular(30))),
+                                child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
                             Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
                           ],
                         ),
@@ -538,7 +549,9 @@ class _TrackState extends State<Track> {
                   padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 100),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/expense');
+                      Navigator.pushNamed(context, '/expense', arguments: {
+                        'userModel': userModel,
+                      });
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 8,

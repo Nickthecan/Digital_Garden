@@ -216,6 +216,6 @@ class _MainMenuState extends State<MainMenu> {
   calculateDate() {
     DateTime now = DateTime.now();
     String month = DateFormat('MMM').format(now);
-    return "${month} ${now.day}, ${now.year}";
+    return "$month ${now.day}, ${now.year}";
   }
 }

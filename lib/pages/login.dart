@@ -244,6 +244,7 @@ class _LoginState extends State<Login> {
         print('Amount Spent: ${budgetModel?.amountSpent}');
         print('Amount Remaining ${budgetModel?.amountRemaining}');
         print('Total Amount ${budgetModel?.totalAmount}');
+
         if (budgetModel != null) {
           Navigator.pushNamed(context, "/main_menu", arguments: {
             'userModel': userModel,
@@ -286,6 +287,12 @@ class _LoginState extends State<Login> {
         print('Amount Spent: ${budgetModel?.amountSpent}');
         print('Amount Remaining ${budgetModel?.amountRemaining}');
         print('Total Amount ${budgetModel?.totalAmount}');
+
+        await FirebaseFirestore.instance.collection('ids').doc(user.uid).set({
+          'newGoalID': 0,
+          'newPurchaseID': 0,
+        });
+
         if (budgetModel != null) {
           Navigator.pushNamed(context, "/main_menu", arguments: {
             'userModel': userModel,

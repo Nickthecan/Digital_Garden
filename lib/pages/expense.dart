@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:digital_garden/features/models/user_model.dart';
+import 'package:digital_garden/features/models/budget_model.dart';
+import 'package:digital_garden/features/models/purchase_model.dart';
 
 class Expense extends StatefulWidget {
   const Expense({super.key});
@@ -9,8 +13,15 @@ class Expense extends StatefulWidget {
 }
 
 class _ExpenseState extends State<Expense> {
+  late UserModel userModel;
+  TextEditingController _purchaseCostController = TextEditingController();
+  TextEditingController _categoryController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    Map data = ModalRoute.of(context)!.settings.arguments as Map;
+    userModel = data['userModel'];
+
     return Scaffold(
       backgroundColor: Color(0xFFD3D3D3),
       body: SafeArea(
@@ -53,6 +64,7 @@ class _ExpenseState extends State<Expense> {
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*(\.[0-9]{0,2})?$')),
                         ],
+                        controller: _purchaseCostController,
                       ),
                     ),
                     Padding(
@@ -70,6 +82,7 @@ class _ExpenseState extends State<Expense> {
                             DropdownMenuEntry(value: 'bills', label: 'Bills'),
                             DropdownMenuEntry(value: 'gas', label: 'Gas'),
                           ],
+                          controller: _categoryController,
                         )
                     ),
                   ],
@@ -83,6 +96,7 @@ class _ExpenseState extends State<Expense> {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
+                    _addExpense();
                     Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
@@ -100,5 +114,40 @@ class _ExpenseState extends State<Expense> {
         ),
       ),
     );
+  }
+
+  _addExpense() async {
+    double purchaseCost = double.parse(_purchaseCostController.text);
+    String category = _categoryController.text;
+    DateTime now = DateTime.now();
+    int purchaseID = await _getNextPurchaseID();
+
+    await FirebaseFirestore.instance.collection('purchase').doc(userModel.uid).set({
+      'category': category,
+      'cost': purchaseCost,
+      'date': now,
+      'purchaseID': purchaseID,
+    });
+
+    PurchaseModel purchaseModel = PurchaseModel(uid: userModel.uid, purchaseID: purchaseID, category: category, cost: purchaseCost, datePurchased: now);
+    return purchaseModel;
+  }
+
+  Future _getNextPurchaseID() async {
+    try {
+      DocumentSnapshot purchaseIDSnapShot = await FirebaseFirestore.instance.collection('ids').doc(userModel.uid).get();
+      Map<String, dynamic> data = purchaseIDSnapShot.data() as Map<String, dynamic>;
+      int newPurchaseID = data['newPurchaseID'];
+
+      FirebaseFirestore.instance.collection('ids').doc(userModel.uid).update({
+        'newPurchaseID': newPurchaseID + 1,
+      });
+
+      return newPurchaseID;
+    }
+    catch (e) {
+      print("Error retrieving the new Purchase ID");
+      print(e.toString());
+    }
   }
 }
