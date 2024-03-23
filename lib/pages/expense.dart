@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:digital_garden/features/models/user_model.dart';
-import 'package:digital_garden/features/models/budget_model.dart';
 import 'package:digital_garden/features/models/purchase_model.dart';
 
 class Expense extends StatefulWidget {
@@ -18,10 +17,19 @@ class _ExpenseState extends State<Expense> {
   TextEditingController _categoryController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadData();
+  }
+
+  Future<void> _loadData() async {
     Map data = ModalRoute.of(context)!.settings.arguments as Map;
     userModel = data['userModel'];
+    setState(() {});
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFD3D3D3),
       body: SafeArea(

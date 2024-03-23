@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:digital_garden/features/models/user_model.dart';
 import 'package:intl/intl.dart';
+import 'package:digital_garden/features/models/purchase_model.dart';
 
 class MainMenu extends StatefulWidget {
   const MainMenu({super.key});
@@ -15,13 +16,23 @@ class MainMenu extends StatefulWidget {
 class _MainMenuState extends State<MainMenu> {
   late UserModel userModel;
   late BudgetModel budgetModel;
+  List<PurchaseModel> purchases = [];
 
   @override
-  Widget build(BuildContext context) {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadData();
+  }
+
+  Future<void> _loadData() async {
     Map data = ModalRoute.of(context)!.settings.arguments as Map;
     userModel = data['userModel'];
     budgetModel = data['budgetModel'];
-
+    purchases = data['purchaseList'];
+    setState(() {});
+  }
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -85,7 +96,7 @@ class _MainMenuState extends State<MainMenu> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("At a Glance", style: TextStyle(color: Color(0xF22F2F2F), fontSize: 24, fontWeight: FontWeight.w500,)),
-                          Text("\$${budgetModel.amountSpent.toStringAsFixed(2)}", style: TextStyle(color: Color(0xF22F2F2F), fontSize: 16, letterSpacing: 1, fontWeight: FontWeight.w500,)),
+                          Text("\$${budgetModel.calculateAmountSpent(purchases).toStringAsFixed(2)}", style: TextStyle(color: Color(0xF22F2F2F), fontSize: 16, letterSpacing: 1, fontWeight: FontWeight.w500,)),
                           Text("Your spending as of ${calculateDate()}", style: TextStyle(color: Color(0xF22F2F2F), fontSize: 12, fontWeight: FontWeight.w400)),
                           SizedBox(height: 50),
                           Chart(),
@@ -108,6 +119,7 @@ class _MainMenuState extends State<MainMenu> {
                                     Navigator.pushNamed(context, '/plan', arguments: {
                                       'userModel': userModel,
                                       'budgetModel': budgetModel,
+                                      'purchaseList': purchases,
                                     });
                                   },
                                   style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),
@@ -124,6 +136,7 @@ class _MainMenuState extends State<MainMenu> {
                                     Navigator.pushNamed(context, '/track', arguments: {
                                       'userModel': userModel,
                                       'budgetModel': budgetModel,
+                                      'purchaseList': purchases,
                                     });
                                   },
                                   style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),

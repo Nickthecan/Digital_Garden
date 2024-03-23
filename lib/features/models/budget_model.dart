@@ -1,3 +1,5 @@
+import 'package:digital_garden/features/models/purchase_model.dart';
+
 class BudgetModel {
   late final String uid;
   late double totalAmount;
@@ -9,5 +11,13 @@ class BudgetModel {
   double calculateAmountRemaining() {
     amountRemaining = totalAmount - amountSpent;
     return amountRemaining;
+  }
+
+  calculateAmountSpent(List<PurchaseModel> purchases) {
+    amountSpent = 0;
+    for (var purchase in purchases) {
+      amountSpent += purchase.cost;
+    }
+    return amountSpent;
   }
 }

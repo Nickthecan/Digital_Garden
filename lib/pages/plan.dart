@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import '../features/models/user_model.dart';
+import 'package:digital_garden/features/models/user_model.dart';
+import 'package:digital_garden/features/models/purchase_model.dart';
 import 'dart:core';
 
 class Plan extends StatefulWidget {
@@ -17,61 +18,21 @@ class Plan extends StatefulWidget {
 class _PlanState extends State<Plan> {
   late UserModel userModel;
   late BudgetModel budgetModel;
+  List<PurchaseModel> purchases = [];
   TextEditingController _budgetController = TextEditingController();
 
-  Future editBudget(BuildContext context) => showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Center(child: Text("Edit Budget", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)))),
-        content: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text("\$", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-                child: Container(
-                  width:110,
-                  child: TextField(
-                    autofocus: true,
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-                    keyboardType: TextInputType.number,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*(\.[0-9]{0,2})?$')),
-                    ],
-                    controller: _budgetController,
-                  ),
-                ),
-              ),
-            ]
-        ),
-        actions: [
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  double newBudget = double.parse(_budgetController.text);
-                  updateBudgetDB(newBudget);
-                  budgetModel.totalAmount = newBudget;
-                  submit(context);
-                });
-              },
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8), // Adjust the borderRadius as needed
-                ),
-                elevation: 8,
-                foregroundColor: Colors.white, backgroundColor: Color(0xFF58E47F),
-              ),
-              child: Text("Update Budget"),
-            ),
-          ),
-        ],
-      )
-  );
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadData();
+  }
 
-  void submit(context) {
-    Navigator.pop(context);
+  Future<void> _loadData() async {
+    Map data = ModalRoute.of(context)!.settings.arguments as Map;
+    userModel = data['userModel'];
+    budgetModel = data['budgetModel'];
+    purchases = data['purchaseList'];
+    setState(() {});
   }
 
   @override
@@ -134,11 +95,11 @@ class _PlanState extends State<Plan> {
                         padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
                         child: CircularPercentIndicator(radius: 140,
                             lineWidth: 45,
-                            percent: 0.4,
+                            percent: budgetModel.amountSpent / budgetModel.totalAmount,
                             progressColor: Color(0xFF58E47F),
                             backgroundColor: Color(0xFFD3D3D3),
                             circularStrokeCap: CircularStrokeCap.round,
-                            center: Text('40%\nSpent',
+                            center: Text('${((budgetModel.amountSpent / budgetModel.totalAmount) * 100).toInt()}%\nSpent',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 40,
                                     fontWeight: FontWeight.bold,
@@ -261,7 +222,7 @@ class _PlanState extends State<Plan> {
                       child: LinearPercentIndicator(lineHeight: 15,
                           progressColor: Color(0xFF58E47F),
                           backgroundColor: Color(0xFFD3D3D3),
-                          percent: 0.37,
+                          percent: 0,
                           barRadius: Radius.circular(30)),
                     ),
                     Row(
@@ -288,7 +249,7 @@ class _PlanState extends State<Plan> {
                       child: LinearPercentIndicator(lineHeight: 15,
                           progressColor: Color(0xFF58E47F),
                           backgroundColor: Color(0xFFD3D3D3),
-                          percent: 0.37,
+                          percent: 0,
                           barRadius: Radius.circular(30)),
                     ),
                     Row(
@@ -315,7 +276,7 @@ class _PlanState extends State<Plan> {
                       child: LinearPercentIndicator(lineHeight: 15,
                           progressColor: Color(0xFF58E47F),
                           backgroundColor: Color(0xFFD3D3D3),
-                          percent: 0.37,
+                          percent: 0,
                           barRadius: Radius.circular(30)),
                     ),
                     Row(
@@ -323,7 +284,7 @@ class _PlanState extends State<Plan> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                          child: Text("\0.00", style: TextStyle(
+                          child: Text("\$0.00", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F)),),
@@ -342,7 +303,7 @@ class _PlanState extends State<Plan> {
                       child: LinearPercentIndicator(lineHeight: 15,
                           progressColor: Color(0xFF58E47F),
                           backgroundColor: Color(0xFFD3D3D3),
-                          percent: 0.37,
+                          percent: 0,
                           barRadius: Radius.circular(30)),
                     ),
                     Row(
@@ -369,7 +330,7 @@ class _PlanState extends State<Plan> {
                       child: LinearPercentIndicator(lineHeight: 15,
                           progressColor: Color(0xFF58E47F),
                           backgroundColor: Color(0xFFD3D3D3),
-                          percent: 0.37,
+                          percent: 0,
                           barRadius: Radius.circular(30)),
                     ),
                     Row(
@@ -414,6 +375,61 @@ class _PlanState extends State<Plan> {
         ],
       ),
     );
+  }
+
+  Future editBudget(BuildContext context) => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Center(child: Text("Edit Budget", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)))),
+        content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text("\$", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+                child: Container(
+                  width:110,
+                  child: TextField(
+                    autofocus: true,
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*(\.[0-9]{0,2})?$')),
+                    ],
+                    controller: _budgetController,
+                  ),
+                ),
+              ),
+            ]
+        ),
+        actions: [
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  double newBudget = double.parse(_budgetController.text);
+                  updateBudgetDB(newBudget);
+                  budgetModel.totalAmount = newBudget;
+                  submit(context);
+                });
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8), // Adjust the borderRadius as needed
+                ),
+                elevation: 8,
+                foregroundColor: Colors.white, backgroundColor: Color(0xFF58E47F),
+              ),
+              child: Text("Update Budget"),
+            ),
+          ),
+        ],
+      )
+  );
+
+  void submit(context) {
+    Navigator.pop(context);
   }
 
   getRemainingDays() {

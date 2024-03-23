@@ -17,11 +17,21 @@ class _TrackState extends State<Track> {
   List<PurchaseModel> purchases = [];
 
   @override
-  Widget build(BuildContext context) {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadData();
+  }
+
+  Future<void> _loadData() async {
     Map data = ModalRoute.of(context)!.settings.arguments as Map;
     userModel = data['userModel'];
     budgetModel = data['budgetModel'];
+    purchases = data['purchaseList'];
+    setState(() {});
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFD3D3D3),
       body: CustomScrollView(

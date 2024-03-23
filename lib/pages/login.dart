@@ -3,8 +3,8 @@ import 'package:digital_garden/features/auth_services.dart';
 import 'package:digital_garden/features/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import '../features/models/budget_model.dart';
+import 'package:digital_garden/features/models/purchase_model.dart';
+import 'package:digital_garden/features/models/budget_model.dart';
 
 
 class Login extends StatefulWidget {
@@ -244,11 +244,14 @@ class _LoginState extends State<Login> {
         print('Amount Spent: ${budgetModel?.amountSpent}');
         print('Amount Remaining ${budgetModel?.amountRemaining}');
         print('Total Amount ${budgetModel?.totalAmount}');
+        
+        List<PurchaseModel> purchaseList = await _fetchPurchases(userModel);
 
         if (budgetModel != null) {
           Navigator.pushNamed(context, "/main_menu", arguments: {
             'userModel': userModel,
             'budgetModel': budgetModel,
+            'purchaseList': purchaseList,
           });
         }
         else {
@@ -340,6 +343,25 @@ class _LoginState extends State<Login> {
     }
     catch (e) {
       print('error occurred whilst fetching the budget');
+      print(e.toString());
+    }
+  }
+  
+  _fetchPurchases(UserModel userModel) async {
+    try {
+      QuerySnapshot<Map<String, dynamic>> purchaseQuerySnapshot = await FirebaseFirestore.instance.collection('purchase').get();
+      List<PurchaseModel> dataList = [];
+
+      for (var doc in purchaseQuerySnapshot.docs) {
+        if (doc.id.startsWith(userModel.uid)) {
+          PurchaseModel purchaseModel = PurchaseModel(uid: userModel.uid, purchaseID: doc['purchaseID'], category: doc['category'], cost: doc['cost'], datePurchased: doc['date'].toDate());
+          dataList.add(purchaseModel);
+        }
+      }
+      return dataList;
+    }
+    catch (e) {
+      print("error fetching the user's purchases");
       print(e.toString());
     }
   }
