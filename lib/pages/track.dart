@@ -72,384 +72,15 @@ class _TrackState extends State<Track> {
                       padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
                       child: Text("Daily spending", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("1", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("2", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("3", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("4", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("5", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("6", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("7", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("8", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("9", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("10", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("11", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("12", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("13", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("14", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("15", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("16", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("17", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("18", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("19", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("20", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("21", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("22", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("23", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("24", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("25", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("26", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("27", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("28", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("29", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("30", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("31", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
-                          Expanded(
-                              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                          Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
-                        ],
-                      ),
-                    ),
+                    SizedBox(height: 10,),
+                    for (int i = 1; i <= calculateNumberOfDays(); i++)
+                      _buildDaySpending(i),
                   ],
                 ),
               ),
             ),
           ),
-          SliverToBoxAdapter(
+          /*SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20, 30, 20, 0),
               child: Container(
@@ -473,6 +104,8 @@ class _TrackState extends State<Track> {
                         padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
                         child: Text("Weekly spending", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
                       ),
+                      for (int i = 1; i <= calculateNumberOfWeeks(); i++)
+                        _buildWeekSpending(i),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 30, 20, 0),
                         child: Row(
@@ -537,7 +170,7 @@ class _TrackState extends State<Track> {
                 ),
               ),
             ),
-          ),
+          ),*/
           SliverToBoxAdapter(
             child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
@@ -577,4 +210,39 @@ class _TrackState extends State<Track> {
       ),
     );
   }
+
+  int calculateNumberOfDays() {
+    DateTime now  = DateTime.now();
+    DateTime daysOfTheMonth = DateTime(now.year, now.month + 1, 0);
+    return daysOfTheMonth.day;
+
+  }
+
+  _buildDaySpending(int dayNumber) {
+    double progressBarPercentage = /*calculate this later*/0;
+    double amountSpentThatDay = /*calculate this later as well*/0;
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(30, 10, 20, 0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text("$dayNumber", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+          Expanded(
+              child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: progressBarPercentage, barRadius: Radius.circular(30))),
+          Text("\$${amountSpentThatDay.toStringAsFixed(2)}", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
+        ],
+      ),
+    );
+  }
+
+  /*int calculateNumberOfWeeks() {
+    DateTime now  = DateTime.now();
+    DateTime daysOfTheMonth = DateTime(now.year, now.month + 1, 0);
+
+  }
+
+  _buildWeekSpending(int weekNumber) {
+
+  }*/
 }
