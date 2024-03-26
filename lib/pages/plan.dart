@@ -85,7 +85,7 @@ class _PlanState extends State<Plan> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
-                      child: Text("\$${budgetModel.calculateAmountRemaining().toStringAsFixed(2)} left for ${getRemainingDays()} days", style: TextStyle(
+                      child: Text("\$${budgetModel.calculateAmountRemaining(purchases).toStringAsFixed(2)} left for ${getRemainingDays()} days", style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
                           color: Color(0xF22F2F2F)),),
@@ -132,7 +132,7 @@ class _PlanState extends State<Plan> {
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F)),),
-                          Text("\$${budgetModel.calculateAmountRemaining().toStringAsFixed(2)}", style: TextStyle(
+                          Text("\$${budgetModel.calculateAmountRemaining(purchases).toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F)),),

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:digital_garden/features/models/budget_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:digital_garden/features/models/user_model.dart';
@@ -13,6 +14,7 @@ class Expense extends StatefulWidget {
 
 class _ExpenseState extends State<Expense> {
   late UserModel userModel;
+  late List<PurchaseModel> purchases;
   TextEditingController _purchaseCostController = TextEditingController();
   TextEditingController _categoryController = TextEditingController();
 
@@ -25,6 +27,7 @@ class _ExpenseState extends State<Expense> {
   Future<void> _loadData() async {
     Map data = ModalRoute.of(context)!.settings.arguments as Map;
     userModel = data['userModel'];
+    purchases = data['purchaseList'];
     setState(() {});
   }
 
@@ -103,9 +106,9 @@ class _ExpenseState extends State<Expense> {
                 width: 500,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {
-                    _addExpense();
-                    Navigator.pop(context);
+                  onPressed: () async {
+                    await _addExpense();
+                    Navigator.pop(context, purchases);
                   },
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
@@ -130,15 +133,17 @@ class _ExpenseState extends State<Expense> {
     DateTime now = DateTime.now();
     int purchaseID = await _getNextPurchaseID();
 
-    await FirebaseFirestore.instance.collection('purchase').doc(userModel.uid).set({
+    await FirebaseFirestore.instance.collection('purchase').add({
       'category': category,
       'cost': purchaseCost,
       'date': now,
       'purchaseID': purchaseID,
+      'userID': userModel.uid
     });
 
     PurchaseModel purchaseModel = PurchaseModel(uid: userModel.uid, purchaseID: purchaseID, category: category, cost: purchaseCost, datePurchased: now);
-    return purchaseModel;
+    purchases.add(purchaseModel);
+    return purchases;
   }
 
   Future _getNextPurchaseID() async {

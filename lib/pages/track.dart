@@ -75,6 +75,7 @@ class _TrackState extends State<Track> {
                     SizedBox(height: 10,),
                     for (int i = 1; i <= calculateNumberOfDays(); i++)
                       _buildDaySpending(i),
+
                   ],
                 ),
               ),
@@ -191,10 +192,16 @@ class _TrackState extends State<Track> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 100),
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/expense', arguments: {
+                    onPressed: () async {
+                      List<PurchaseModel>? updatedPurchases = await Navigator.pushNamed(context, '/expense', arguments: {
                         'userModel': userModel,
-                      });
+                        'purchaseList': purchases,
+                      }) as List<PurchaseModel>?;
+                      if (updatedPurchases != null) {
+                        setState(() {
+                          purchases = updatedPurchases;
+                        });
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 8,
@@ -219,8 +226,10 @@ class _TrackState extends State<Track> {
   }
 
   _buildDaySpending(int dayNumber) {
-    double progressBarPercentage = /*calculate this later*/0;
-    double amountSpentThatDay = /*calculate this later as well*/0;
+    double amountSpentThatDay = budgetModel.calculateAmountSpentToday(purchases, dayNumber);
+    double progressBarPercentage = amountSpentThatDay / budgetModel.totalAmount;
+
+    setState(() {});
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(30, 10, 20, 0),
