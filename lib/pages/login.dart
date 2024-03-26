@@ -241,8 +241,6 @@ class _LoginState extends State<Login> {
         print('username: ${userModel.username}');
 
         BudgetModel? budgetModel = await _fetchBudget(userModel);
-        print('Amount Spent: ${budgetModel?.amountSpent}');
-        print('Amount Remaining ${budgetModel?.amountRemaining}');
         print('Total Amount ${budgetModel?.totalAmount}');
         
         List<PurchaseModel> purchaseList = await _fetchPurchases(userModel);
@@ -287,8 +285,6 @@ class _LoginState extends State<Login> {
         print('username: ${userModel.username}');
 
         BudgetModel? budgetModel = await _fetchBudget(userModel);
-        print('Amount Spent: ${budgetModel?.amountSpent}');
-        print('Amount Remaining ${budgetModel?.amountRemaining}');
         print('Total Amount ${budgetModel?.totalAmount}');
 
         await FirebaseFirestore.instance.collection('ids').doc(user.uid).set({
@@ -325,20 +321,16 @@ class _LoginState extends State<Login> {
       if (documentSnapshot.exists) {
         Map<String, dynamic> budgetData = documentSnapshot.data() as Map<String, dynamic>;
         double totalAmount = budgetData['totalAmount'];
-        double amountRemaining = budgetData['amountRemaining'];
-        double amountSpent = budgetData['amountSpent'];
 
         print('Budget Loaded');
-        return BudgetModel(uid: userModel.uid, totalAmount: totalAmount, amountRemaining: amountRemaining, amountSpent: amountSpent);
+        return BudgetModel(uid: userModel.uid, totalAmount: totalAmount);
       }
       else {
         FirebaseFirestore.instance.collection('budget').doc(userModel.uid).set({
-          'amountRemaining': 0.0,
-          'amountSpent': 0.0,
           'totalAmount': 0.0,
         });
         print('New Budget Created');
-        return BudgetModel(uid: userModel.uid, totalAmount: 0.0, amountRemaining: 0.0, amountSpent: 0.0);
+        return BudgetModel(uid: userModel.uid, totalAmount: 0.0);
       }
     }
     catch (e) {
