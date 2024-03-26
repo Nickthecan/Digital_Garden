@@ -30,4 +30,15 @@ class BudgetModel {
     }
     return amountSpentToday;
   }
+
+  calculateAmountSpentByCategory(List<PurchaseModel> purchases, String category) {
+    double amountSpentByCategory = 0;
+    for (var purchase in purchases) {
+      String compareCategory = purchase.category;
+      if (compareCategory == category) {
+        amountSpentByCategory += purchase.cost;
+      }
+    }
+    return amountSpentByCategory;
+  }
 }

@@ -37,10 +37,6 @@ class _PlanState extends State<Plan> {
 
   @override
   Widget build(BuildContext context) {
-    Map data = ModalRoute.of(context)!.settings.arguments as Map;
-    userModel = data['userModel'];
-    budgetModel = data['budgetModel'];
-
     return Scaffold(
       backgroundColor: Color(0xFFD3D3D3),
       body: CustomScrollView(
@@ -222,7 +218,7 @@ class _PlanState extends State<Plan> {
                       child: LinearPercentIndicator(lineHeight: 15,
                           progressColor: Color(0xFF58E47F),
                           backgroundColor: Color(0xFFD3D3D3),
-                          percent: 0,
+                          percent: budgetModel.calculateAmountSpentByCategory(purchases, "Food and Drink") / budgetModel.totalAmount,
                           barRadius: Radius.circular(30)),
                     ),
                     Row(
@@ -230,7 +226,7 @@ class _PlanState extends State<Plan> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 20, 0),
-                          child: Text("\$0.00", style: TextStyle(
+                          child: Text("\$${budgetModel.calculateAmountSpentByCategory(purchases, "Food and Drink").toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F)),),
@@ -249,7 +245,7 @@ class _PlanState extends State<Plan> {
                       child: LinearPercentIndicator(lineHeight: 15,
                           progressColor: Color(0xFF58E47F),
                           backgroundColor: Color(0xFFD3D3D3),
-                          percent: 0,
+                          percent: budgetModel.calculateAmountSpentByCategory(purchases, "Shopping") / budgetModel.totalAmount,
                           barRadius: Radius.circular(30)),
                     ),
                     Row(
@@ -257,7 +253,7 @@ class _PlanState extends State<Plan> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 20, 0),
-                          child: Text("\$0.00", style: TextStyle(
+                          child: Text("\$${budgetModel.calculateAmountSpentByCategory(purchases, "Shopping").toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F)),),
@@ -276,7 +272,7 @@ class _PlanState extends State<Plan> {
                       child: LinearPercentIndicator(lineHeight: 15,
                           progressColor: Color(0xFF58E47F),
                           backgroundColor: Color(0xFFD3D3D3),
-                          percent: 0,
+                          percent: budgetModel.calculateAmountSpentByCategory(purchases, "Entertainment") / budgetModel.totalAmount,
                           barRadius: Radius.circular(30)),
                     ),
                     Row(
@@ -284,7 +280,7 @@ class _PlanState extends State<Plan> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                          child: Text("\$0.00", style: TextStyle(
+                          child: Text("\$${budgetModel.calculateAmountSpentByCategory(purchases, "Entertainment").toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F)),),
@@ -303,7 +299,7 @@ class _PlanState extends State<Plan> {
                       child: LinearPercentIndicator(lineHeight: 15,
                           progressColor: Color(0xFF58E47F),
                           backgroundColor: Color(0xFFD3D3D3),
-                          percent: 0,
+                          percent: budgetModel.calculateAmountSpentByCategory(purchases, "Bills") / budgetModel.totalAmount,
                           barRadius: Radius.circular(30)),
                     ),
                     Row(
@@ -311,7 +307,7 @@ class _PlanState extends State<Plan> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 20, 0),
-                          child: Text("\$0.00", style: TextStyle(
+                          child: Text("\$${budgetModel.calculateAmountSpentByCategory(purchases, "Bills").toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F)),),
@@ -330,7 +326,7 @@ class _PlanState extends State<Plan> {
                       child: LinearPercentIndicator(lineHeight: 15,
                           progressColor: Color(0xFF58E47F),
                           backgroundColor: Color(0xFFD3D3D3),
-                          percent: 0,
+                          percent: budgetModel.calculateAmountSpentByCategory(purchases, "Gas") / budgetModel.totalAmount,
                           barRadius: Radius.circular(30)),
                     ),
                     Row(
@@ -338,7 +334,7 @@ class _PlanState extends State<Plan> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 20, 0),
-                          child: Text("\$0.00", style: TextStyle(
+                          child: Text("\$${budgetModel.calculateAmountSpentByCategory(purchases, "Gas").toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F)),),
