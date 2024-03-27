@@ -99,7 +99,7 @@ class _MainMenuState extends State<MainMenu> {
                           Text("\$${budgetModel.calculateAmountSpent(purchases).toStringAsFixed(2)}", style: TextStyle(color: Color(0xF22F2F2F), fontSize: 16, letterSpacing: 1, fontWeight: FontWeight.w500,)),
                           Text("Your spending as of ${calculateDate()}", style: TextStyle(color: Color(0xF22F2F2F), fontSize: 12, fontWeight: FontWeight.w400)),
                           SizedBox(height: 50),
-                          Chart(),
+                          Chart(budgetModel: budgetModel, purchases: purchases),
                           SizedBox(height: 100),
                         ],
                       ),

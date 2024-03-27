@@ -222,7 +222,6 @@ class _TrackState extends State<Track> {
     DateTime now  = DateTime.now();
     DateTime daysOfTheMonth = DateTime(now.year, now.month + 1, 0);
     return daysOfTheMonth.day;
-
   }
 
   _buildDaySpending(int dayNumber) {
