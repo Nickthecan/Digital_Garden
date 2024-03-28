@@ -40,7 +40,7 @@ class ChartLineChart extends State<Chart> {
     double total = 0;
 
     for (int i = 1; i <= DateTime.now().day; i++) {
-      total += widget.budgetModel.calculateAmountSpentToday(widget.purchases, i);
+      total += widget.budgetModel.calculateAmountSpentToday(widget.purchases, i, DateTime.now().month);
       spots.add(FlSpot(i.toDouble(), total));
     }
 

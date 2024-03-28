@@ -8,7 +8,7 @@ class BudgetModel {
 
   double calculateAmountRemaining(List<PurchaseModel> purchases) {
     double amountRemaining = 0;
-    amountRemaining = totalAmount - calculateAmountSpent(purchases);
+    amountRemaining = totalAmount - calculateAmountSpentThisMonth(purchases, DateTime.now().month);
     return amountRemaining;
   }
 
@@ -20,11 +20,22 @@ class BudgetModel {
     return amountSpent;
   }
 
-  calculateAmountSpentToday(List<PurchaseModel> purchases, int day) {
+  calculateAmountSpentToday(List<PurchaseModel> purchases, int day, int month) {
     double amountSpentToday = 0;
     for (var purchase in purchases) {
       DateTime dayPurchased = purchase.datePurchased;
-      if (dayPurchased.day == day) {
+      if (dayPurchased.day == day && dayPurchased.month == month) {
+        amountSpentToday += purchase.cost;
+      }
+    }
+    return amountSpentToday;
+  }
+
+  calculateAmountSpentThisMonth(List<PurchaseModel> purchases, int month) {
+    double amountSpentToday = 0;
+    for (var purchase in purchases) {
+      DateTime dayPurchased = purchase.datePurchased;
+      if (dayPurchased.month == month) {
         amountSpentToday += purchase.cost;
       }
     }

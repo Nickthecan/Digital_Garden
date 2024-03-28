@@ -107,9 +107,11 @@ class _MainMenuState extends State<MainMenu> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("At a Glance", style: TextStyle(color: Color(0xF22F2F2F), fontSize: 24, fontWeight: FontWeight.w500,)),
-                            Text("\$${budgetModel.calculateAmountSpent(purchases).toStringAsFixed(2)}", style: TextStyle(color: Color(0xF22F2F2F), fontSize: 16, letterSpacing: 1, fontWeight: FontWeight.w500,)),
-                            Text("Your spending as of ${calculateDate()}", style: TextStyle(color: Color(0xF22F2F2F), fontSize: 12, fontWeight: FontWeight.w400)),
-                            SizedBox(height: 50),
+                            SizedBox(height: 5),
+                            Text("\$${budgetModel.calculateAmountSpentThisMonth(purchases, DateTime.now().month).toStringAsFixed(2)}", style: TextStyle(color: Color(0xF22F2F2F), fontSize: 18, letterSpacing: 1, fontWeight: FontWeight.w500,)),
+                            SizedBox(height: 5),
+                            Text("Your monthly spending as of ${calculateDate()}", style: TextStyle(color: Color(0xF22F2F2F), fontSize: 12, fontWeight: FontWeight.w400)),
+                            SizedBox(height: 40),
                             Chart(budgetModel: budgetModel, purchases: purchases),
                             SizedBox(height: 100),
                           ],
@@ -201,42 +203,6 @@ class _MainMenuState extends State<MainMenu> {
       ),
     );
   }
-
-  /*void _fetchBudget() async {
-    try {
-      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('budget').doc(userModel.uid).get();
-      if (documentSnapshot.exists) {
-        Map<String, dynamic> budgetData = documentSnapshot.data() as Map<String, dynamic>;
-        double totalAmount = budgetData['totalAmount'];
-        double amountRemaining = budgetData['amountRemaining'];
-        double amountSpent = budgetData['amountSpent'];
-
-        setState(() {
-          budgetModel = BudgetModel(uid: userModel.uid, totalAmount: totalAmount, amountRemaining: amountRemaining, amountSpent: amountSpent);
-          print('Budget Loaded');
-          isLoading = false;
-        });
-      }
-      else {
-        FirebaseFirestore.instance.collection('budget').doc(userModel.uid).set({
-          'amountRemaining': 0.0,
-          'amountSpent': 0.0,
-          'totalAmount': 0.0,
-        });
-
-        setState(() {
-          budgetModel = BudgetModel(uid: userModel.uid, totalAmount: 0.0, amountRemaining: 0.0, amountSpent: 0.0);
-          print('New Budget Created');
-          isLoading = false;
-        });
-      }
-    }
-    catch (e) {
-      print('error occurred whilst fetching the budget');
-      print(e.toString());
-      isLoading = false;
-    }
-  }*/
 
   calculateDate() {
     DateTime now = DateTime.now();

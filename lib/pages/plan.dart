@@ -91,11 +91,11 @@ class _PlanState extends State<Plan> {
                         padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
                         child: CircularPercentIndicator(radius: 140,
                             lineWidth: 45,
-                            percent: budgetModel.calculateAmountSpent(purchases) / budgetModel.totalAmount,
+                            percent: budgetModel.calculateAmountSpentThisMonth(purchases, DateTime.now().month) / budgetModel.totalAmount,
                             progressColor: Color(0xFF58E47F),
                             backgroundColor: Color(0xFFD3D3D3),
                             circularStrokeCap: CircularStrokeCap.round,
-                            center: Text('${((budgetModel.calculateAmountSpent(purchases) / budgetModel.totalAmount) * 100).toInt()}%\nSpent',
+                            center: Text('${((budgetModel.calculateAmountSpentThisMonth(purchases, DateTime.now().month) / budgetModel.totalAmount) * 100).toInt()}%\nSpent',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 40,
                                     fontWeight: FontWeight.bold,
@@ -112,7 +112,7 @@ class _PlanState extends State<Plan> {
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F)),),
-                          Text("\$${budgetModel.calculateAmountSpent(purchases).toStringAsFixed(2)}", style: TextStyle(
+                          Text("\$${budgetModel.calculateAmountSpentThisMonth(purchases, DateTime.now().month).toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F)),),

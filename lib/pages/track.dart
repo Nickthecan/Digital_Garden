@@ -240,7 +240,7 @@ class _TrackState extends State<Track> {
   }
 
   _buildDaySpending(int dayNumber) {
-    double amountSpentThatDay = budgetModel.calculateAmountSpentToday(purchases, dayNumber);
+    double amountSpentThatDay = budgetModel.calculateAmountSpentToday(purchases, dayNumber, DateTime.now().month);
     double progressBarPercentage = amountSpentThatDay / budgetModel.totalAmount;
 
     setState(() {});
