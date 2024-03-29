@@ -41,7 +41,12 @@ class ChartLineChart extends State<Chart> {
 
     for (int i = 1; i <= DateTime.now().day; i++) {
       total += widget.budgetModel.calculateAmountSpentToday(widget.purchases, i, DateTime.now().month);
-      spots.add(FlSpot(i.toDouble(), total));
+      if (total >= widget.budgetModel.totalAmount) {
+        spots.add(FlSpot(i.toDouble(), widget.budgetModel.totalAmount));
+      }
+      else {
+        spots.add(FlSpot(i.toDouble(), total));
+      }
     }
 
     return LineChartData(

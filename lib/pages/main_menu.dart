@@ -65,7 +65,7 @@ class _MainMenuState extends State<MainMenu> {
                     ),
                     Center(
                       child: Image(
-                        image: AssetImage('assets/${calculateTreeStatus()}'),
+                        image: AssetImage('assets/${userModel.calculateTreeStatus(budgetModel, purchases)}'),
                       ),
                     ),
                   ],
@@ -202,10 +202,6 @@ class _MainMenuState extends State<MainMenu> {
         ),
       ),
     );
-  }
-
-  calculateTreeStatus() {
-    return "tree5.png";
   }
 
   calculateDate() {

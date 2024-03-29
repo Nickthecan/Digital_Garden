@@ -49,14 +49,14 @@ class BudgetModel {
   }
 
   calculateAmountSpentThisMonth(List<PurchaseModel> purchases, int month) {
-    double amountSpentToday = 0;
+    double amountSpentThisMonth = 0;
     for (var purchase in purchases) {
       DateTime dayPurchased = purchase.datePurchased;
       if (dayPurchased.month == month) {
-        amountSpentToday += purchase.cost;
+        amountSpentThisMonth += purchase.cost;
       }
     }
-    return amountSpentToday;
+    return amountSpentThisMonth;
   }
 
   calculateAmountSpentByCategory(List<PurchaseModel> purchases, String category) {
