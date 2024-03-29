@@ -1,10 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:digital_garden/features/auth_services.dart';
-import 'package:digital_garden/features/models/user_model.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:digital_garden/features/models/purchase_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:digital_garden/features/auth_services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:digital_garden/features/models/user_model.dart';
 import 'package:digital_garden/features/models/budget_model.dart';
+import 'package:digital_garden/features/models/purchase_model.dart';
 
 
 class Login extends StatefulWidget {
@@ -235,10 +235,12 @@ class _LoginState extends State<Login> {
       DocumentSnapshot userSnapshot = await FirebaseFirestore.instance.collection('user').doc(user.uid).get();
       if (userSnapshot.exists) {
         String username = userSnapshot['username'];
-        UserModel userModel = UserModel(uid: user.uid, username: username);
+        UserModel userModel = UserModel(uid: user.uid, username: username, treeLevel: userSnapshot['treeLevel'], streak: userSnapshot['streak'].toDate());
         print("User is successfully logged in");
         print('userID: ${userModel.uid}');
         print('username: ${userModel.username}');
+        print('tree level: ${userModel.treeLevel}');
+        print('streak since: ${userModel.streak}');
 
         BudgetModel? budgetModel = await _fetchBudget(userModel);
         print('Total Amount ${budgetModel?.totalAmount}');
@@ -278,11 +280,15 @@ class _LoginState extends State<Login> {
       if (user != null) {
         await FirebaseFirestore.instance.collection('user').doc(user.uid).set({
           'username': userName,
+          'treeLevel': 1,
+          'streak': Timestamp.now(),
         });
-        UserModel userModel = UserModel(uid: user.uid, username: userName);
+        UserModel userModel = UserModel(uid: user.uid, username: userName, treeLevel: 1, streak: DateTime.now());
         print("User is successfully created");
         print('userID: ${userModel.uid}');
         print('username: ${userModel.username}');
+        print('tree level: ${userModel.treeLevel}');
+        print('streak since: ${userModel.streak}');
 
         BudgetModel? budgetModel = await _fetchBudget(userModel);
         print('Total Amount ${budgetModel?.totalAmount}');

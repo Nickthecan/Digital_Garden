@@ -1,14 +1,25 @@
-import 'package:digital_garden/features/models/purchase_model.dart';
-import 'package:digital_garden/features/models/goal_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
   late final String uid;
   late final String username;
-  /*late List<PurchaseModel> purchases;
-  late List<GoalModel> goals;*/
+  late int treeLevel;
+  late DateTime streak;
 
 
-  UserModel({ required this.uid, required this.username, /*required this.purchases, required this.goals*/ });
+  UserModel({ required this.uid, required this.username, required this.treeLevel, required this.streak});
+
+  calculateStreak(DateTime streak) {
+    Duration onFire = DateTime.now().difference(streak);
+    return onFire.inDays;
+  }
+
+  resetStreak() async {
+    streak = DateTime.now();
+    await FirebaseFirestore.instance.collection('user').doc(uid).update({
+      'streak': Timestamp.now(),
+    });
+  }
 
 
 

@@ -1,10 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:digital_garden/features/models/budget_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:digital_garden/features/models/user_model.dart';
+import 'package:digital_garden/features/models/budget_model.dart';
 import 'package:digital_garden/features/models/purchase_model.dart';
 import 'dart:core';
 
@@ -374,77 +373,59 @@ class _PlanState extends State<Plan> {
   }
 
   Future editBudget(BuildContext context) => showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Center(child: Text("Edit Budget", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)))),
-        content: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text("\$", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-                child: Container(
-                  width:110,
-                  child: TextField(
-                    autofocus: true,
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-                    keyboardType: TextInputType.number,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*(\.[0-9]{0,2})?$')),
-                    ],
-                    controller: _budgetController,
-                  ),
-                ),
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Center(child: Text("Edit Budget", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)))),
+      content: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text("\$", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+            child: Container(
+              width:110,
+              child: TextField(
+                autofocus: true,
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*(\.[0-9]{0,2})?$')),
+                ],
+                controller: _budgetController,
               ),
-            ]
-        ),
-        actions: [
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  double newBudget = double.parse(_budgetController.text);
-                  updateBudgetDB(newBudget);
-                  budgetModel.totalAmount = newBudget;
-                  submit(context);
-                });
-              },
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8), // Adjust the borderRadius as needed
-                ),
-                elevation: 8,
-                foregroundColor: Colors.white, backgroundColor: Color(0xFF58E47F),
-              ),
-              child: Text("Update Budget"),
             ),
           ),
-        ],
-      )
+        ]
+      ),
+      actions: [
+        Center(
+          child: ElevatedButton(
+            onPressed: () {
+              setState(() {
+                double newBudget = double.parse(_budgetController.text);
+                budgetModel.updateBudget(userModel, newBudget);
+                Navigator.pop(context);
+              });
+            },
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8), // Adjust the borderRadius as needed
+              ),
+              elevation: 8,
+              foregroundColor: Colors.white, backgroundColor: Color(0xFF58E47F),
+            ),
+            child: Text("Update Budget"),
+          ),
+        ),
+      ],
+    )
   );
-
-  void submit(context) {
-    Navigator.pop(context);
-  }
 
   getRemainingDays() {
     DateTime now = DateTime.now();
     DateTime lastDayOfMonth = DateTime(now.year, now.month + 1, 0);
     int daysRemaining = lastDayOfMonth.day - now.day;
     return daysRemaining;
-  }
-
-  void updateBudgetDB(double totalBudget) async {
-    try {
-      await FirebaseFirestore.instance.collection('budget').doc(userModel.uid).update({
-        'totalAmount': totalBudget,
-      });
-      print("Budget's total amount has been updated in the DB");
-    }
-    catch (e) {
-      print('Could not Access the DB to update the total Amount');
-      print(e.toString());
-    }
   }
 }

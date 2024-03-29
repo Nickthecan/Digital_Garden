@@ -1,5 +1,5 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:digital_garden/features/models/budget_model.dart';
 import 'package:digital_garden/features/models/purchase_model.dart';
 
