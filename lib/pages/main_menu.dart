@@ -5,6 +5,7 @@ import 'package:digital_garden/features/models/user_model.dart';
 import 'package:digital_garden/features/models/budget_model.dart';
 import 'package:digital_garden/features/models/purchase_model.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class MainMenu extends StatefulWidget {
   const MainMenu({super.key});
@@ -17,6 +18,8 @@ class _MainMenuState extends State<MainMenu> {
   late UserModel userModel;
   late BudgetModel budgetModel;
   List<PurchaseModel> purchases = [];
+  late String treeStatus;
+  bool isLoading = true;
 
   @override
   void didChangeDependencies() {
@@ -25,14 +28,31 @@ class _MainMenuState extends State<MainMenu> {
   }
 
   Future<void> _loadData() async {
+    setState(() {
+      isLoading = true;
+    });
+
     Map data = ModalRoute.of(context)!.settings.arguments as Map;
     userModel = data['userModel'];
     budgetModel = data['budgetModel'];
     purchases = data['purchaseList'];
-    setState(() {});
+    treeStatus = await userModel.calculateTreeStatus(budgetModel, purchases);
+
+    setState(() {
+      isLoading = false;
+    });
   }
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return Scaffold(
+        backgroundColor: Color(0xFF58E47F),
+        body: Center(
+          child: LoadingAnimationWidget.threeArchedCircle(color: Colors.white, size: 64),
+        ),
+      );
+    }
+
     return PopScope(
       canPop: true,
       onPopInvoked: (didPop) async {
@@ -65,7 +85,7 @@ class _MainMenuState extends State<MainMenu> {
                     ),
                     Center(
                       child: Image(
-                        image: AssetImage('assets/${userModel.calculateTreeStatus(budgetModel, purchases)}'),
+                        image: AssetImage('assets/$treeStatus.png'),
                       ),
                     ),
                   ],

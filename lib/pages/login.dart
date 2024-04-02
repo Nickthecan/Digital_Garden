@@ -235,12 +235,13 @@ class _LoginState extends State<Login> {
       DocumentSnapshot userSnapshot = await FirebaseFirestore.instance.collection('user').doc(user.uid).get();
       if (userSnapshot.exists) {
         String username = userSnapshot['username'];
-        UserModel userModel = UserModel(uid: user.uid, username: username, treeLevel: userSnapshot['treeLevel'], streak: userSnapshot['streak'].toDate());
+        UserModel userModel = UserModel(uid: user.uid, username: username, treeLevel: userSnapshot['treeLevel'], streak: userSnapshot['streak'].toDate(), isTreeAlive: userSnapshot['isTreeAlive']);
         print("User is successfully logged in");
         print('userID: ${userModel.uid}');
         print('username: ${userModel.username}');
         print('tree level: ${userModel.treeLevel}');
         print('streak since: ${userModel.streak}');
+        print("is the user's tree alive?: ${userModel.isTreeAlive}");
 
         BudgetModel? budgetModel = await _fetchBudget(userModel);
         print('Total Amount ${budgetModel?.totalAmount}');
@@ -282,13 +283,15 @@ class _LoginState extends State<Login> {
           'username': userName,
           'treeLevel': 1,
           'streak': Timestamp.now(),
+          'isTreeAlive': true,
         });
-        UserModel userModel = UserModel(uid: user.uid, username: userName, treeLevel: 1, streak: DateTime.now());
+        UserModel userModel = UserModel(uid: user.uid, username: userName, treeLevel: 1, streak: DateTime.now(), isTreeAlive: true);
         print("User is successfully created");
         print('userID: ${userModel.uid}');
         print('username: ${userModel.username}');
         print('tree level: ${userModel.treeLevel}');
         print('streak since: ${userModel.streak}');
+        print("is the user's tree alive?: ${userModel.isTreeAlive}");
 
         BudgetModel? budgetModel = await _fetchBudget(userModel);
         print('Total Amount ${budgetModel?.totalAmount}');

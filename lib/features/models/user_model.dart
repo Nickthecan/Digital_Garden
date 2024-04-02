@@ -7,33 +7,68 @@ class UserModel {
   late final String username;
   late int treeLevel;
   late DateTime streak;
+  late bool isTreeAlive;
 
+  UserModel({ required this.uid, required this.username, required this.treeLevel, required this.streak, required this.isTreeAlive});
 
-  UserModel({ required this.uid, required this.username, required this.treeLevel, required this.streak});
-
-  calculateTreeStatus(BudgetModel budgetModel, List<PurchaseModel> purchases) {
+  Future<String> calculateTreeStatus(BudgetModel budgetModel, List<PurchaseModel> purchases) async {
     String typeOfTree = "tree";
-    if (budgetModel.calculateAmountSpentThisMonth(purchases, DateTime.now().month) > budgetModel.totalAmount) {
-      typeOfTree = 'dead';
-    }
 
-    int streakTime = calculateStreak(streak);
-    if (streakTime > 30) {
-      return '${typeOfTree}5.png';
+    if (!isTreeAlive) {
+      typeOfTree = 'dead';
+      return typeOfTree + (await calculateTreeLevel(budgetModel, purchases)).toString();
     }
-    else if (streakTime > 20) {
-      return '${typeOfTree}4.png';
-    }
-    else if (streakTime > 10) {
-      return '${typeOfTree}3.png';
-    }
-    else if (streakTime > 5) {
-      return '${typeOfTree}2.png';
+    else if (budgetModel.calculateAmountSpentThisMonth(purchases, DateTime.now().month) > budgetModel.totalAmount) {
+      typeOfTree = 'dead';
+      isTreeAlive = false;
+
+      await FirebaseFirestore.instance.collection('user').doc(uid).update({
+        'isTreeAlive': false,
+      });
+      return typeOfTree + (await calculateTreeLevel(budgetModel, purchases)).toString();
     }
     else {
-      return '${typeOfTree}1.png';
+      return typeOfTree + (await calculateTreeLevel(budgetModel, purchases)).toString();
     }
+  }
 
+  Future<int> calculateTreeLevel(BudgetModel budgetModel, List<PurchaseModel> purchases) async {
+    int streakTime = calculateStreak(streak);
+    if (streakTime > 30) {
+      treeLevel = 5;
+      await FirebaseFirestore.instance.collection('user').doc(uid).update({
+        'treeLevel': 5,
+      });
+      return treeLevel;
+    }
+    else if (streakTime > 20) {
+      treeLevel = 4;
+      await FirebaseFirestore.instance.collection('user').doc(uid).update({
+        'treeLevel': 4,
+      });
+      return treeLevel;
+    }
+    else if (streakTime > 10) {
+      treeLevel = 3;
+      await FirebaseFirestore.instance.collection('user').doc(uid).update({
+        'treeLevel': 3,
+      });
+      return treeLevel;
+    }
+    else if (streakTime > 5) {
+      treeLevel = 2;
+      await FirebaseFirestore.instance.collection('user').doc(uid).update({
+        'treeLevel': 2,
+      });
+      return treeLevel;
+    }
+    else {
+      treeLevel = 1;
+      await FirebaseFirestore.instance.collection('user').doc(uid).update({
+        'treeLevel': 1,
+      });
+      return treeLevel;
+    }
   }
 
   calculateStreak(DateTime streak) {
@@ -47,7 +82,4 @@ class UserModel {
       'streak': Timestamp.now(),
     });
   }
-
-
-
 }
