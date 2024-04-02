@@ -14,7 +14,19 @@ class UserModel {
   Future<String> calculateTreeStatus(BudgetModel budgetModel, List<PurchaseModel> purchases) async {
     String typeOfTree = "tree";
 
-    if (!isTreeAlive) {
+    if (!isTreeAlive && DateTime.now().day == 1) {
+      typeOfTree = "tree";
+      isTreeAlive = true;
+      streak = DateTime.now();
+
+      await FirebaseFirestore.instance.collection('user').doc(uid).update({
+        'isTreeAlive': true,
+        'streak': Timestamp.now(),
+        'treeLevel': 1,
+      });
+      return typeOfTree + (await calculateTreeLevel(budgetModel, purchases)).toString();
+    }
+    else if (!isTreeAlive) {
       typeOfTree = 'dead';
       return typeOfTree + (await calculateTreeLevel(budgetModel, purchases)).toString();
     }

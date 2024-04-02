@@ -59,11 +59,12 @@ class BudgetModel {
     return amountSpentThisMonth;
   }
 
-  calculateAmountSpentByCategory(List<PurchaseModel> purchases, String category) {
+  calculateAmountSpentByCategory(List<PurchaseModel> purchases, String category, int month) {
     double amountSpentByCategory = 0;
     for (var purchase in purchases) {
       String compareCategory = purchase.category;
-      if (compareCategory == category) {
+      DateTime dayPurchased = purchase.datePurchased;
+      if (compareCategory == category && dayPurchased.month == month) {
         amountSpentByCategory += purchase.cost;
       }
     }

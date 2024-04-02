@@ -355,7 +355,7 @@ class _LoginState extends State<Login> {
 
       for (var doc in purchaseQuerySnapshot.docs) {
         if (doc['userID'] == userModel.uid) {
-          PurchaseModel purchaseModel = PurchaseModel(uid: userModel.uid, purchaseID: doc['purchaseID'], category: doc['category'], cost: doc['cost'], datePurchased: doc['date'].toDate());
+          PurchaseModel purchaseModel = PurchaseModel(uid: userModel.uid, purchaseID: doc['purchaseID'], purchaseName: doc['purchaseName'], category: doc['category'], cost: doc['cost'], datePurchased: doc['date'].toDate());
           dataList.add(purchaseModel);
         }
       }

@@ -183,15 +183,17 @@ class _MainMenuState extends State<MainMenu> {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {
-                                      Navigator.pushNamed(context, '/goal_page', arguments: {
+                                      Navigator.pushNamed(context, '/purchase_list_view', arguments: {
                                         'userModel': userModel,
+                                        'budgetModel': budgetModel,
+                                        'purchaseList': purchases,
                                       });
                                     },
                                     style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),
-                                    child: Image.network('https://img.icons8.com/fluency-systems-regular/48/trophy--v1.png', width: 32, height: 32,),
+                                    child: Image.network('https://img.icons8.com/material-outlined/24/purchase-order.png', width: 32, height: 32,),
                                   ),
                                   SizedBox(height: 8),
-                                  Text("Goals", style: TextStyle(color: Color(0xF22F2F2F), fontWeight: FontWeight.w500)),
+                                  Text("Expenses", style: TextStyle(color: Color(0xF22F2F2F), fontWeight: FontWeight.w500)),
                                 ],
                               ),
                               Column(

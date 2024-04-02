@@ -14,6 +14,7 @@ class Expense extends StatefulWidget {
 class _ExpenseState extends State<Expense> {
   late UserModel userModel;
   late List<PurchaseModel> purchases;
+  TextEditingController _nameController = TextEditingController();
   TextEditingController _purchaseCostController = TextEditingController();
   TextEditingController _categoryController = TextEditingController();
 
@@ -46,7 +47,7 @@ class _ExpenseState extends State<Expense> {
               padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
               child: Container(
                 width: 500,
-                height: 300,
+                height: 450,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
@@ -64,10 +65,20 @@ class _ExpenseState extends State<Expense> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+                      child: Text("Name of purchase", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
+                      child: TextField(
+                        controller: _nameController,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
                       child: Text("Cost of purchase", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                      padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
                       child: TextField(
                         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
                         keyboardType: TextInputType.number,
@@ -82,7 +93,7 @@ class _ExpenseState extends State<Expense> {
                       child: Text("Category", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
                     ),
                     Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                        padding: const EdgeInsets.fromLTRB(20, 20, 30, 0),
                         child: DropdownMenu(
                           width: 335,
                           dropdownMenuEntries: [
@@ -106,8 +117,21 @@ class _ExpenseState extends State<Expense> {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () async {
-                    await _addExpense();
-                    Navigator.pop(context, purchases);
+                    String name = _nameController.text;
+                    String purchaseCost = _purchaseCostController.text;
+                    String category = _categoryController.text;
+
+                    if (name.isNotEmpty && category.isNotEmpty && purchaseCost.isNotEmpty) {
+                      await _addExpense();
+                      Navigator.pop(context, purchases);
+                    }
+                    else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Please fill out all fields.'),
+                        ),
+                      );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
@@ -127,12 +151,14 @@ class _ExpenseState extends State<Expense> {
   }
 
   _addExpense() async {
+    String name = _nameController.text;
     double purchaseCost = double.parse(_purchaseCostController.text);
     String category = _categoryController.text;
     DateTime now = DateTime.now();
     int purchaseID = await _getNextPurchaseID();
 
     await FirebaseFirestore.instance.collection('purchase').add({
+      'purchaseName': name,
       'category': category,
       'cost': purchaseCost,
       'date': now,
@@ -140,7 +166,7 @@ class _ExpenseState extends State<Expense> {
       'userID': userModel.uid
     });
 
-    PurchaseModel purchaseModel = PurchaseModel(uid: userModel.uid, purchaseID: purchaseID, category: category, cost: purchaseCost, datePurchased: now);
+    PurchaseModel purchaseModel = PurchaseModel(uid: userModel.uid, purchaseID: purchaseID, purchaseName: name, category: category, cost: purchaseCost, datePurchased: now);
     purchases.add(purchaseModel);
     return purchases;
   }
