@@ -10,6 +10,7 @@ class BudgetModel {
 
   updateBudget(UserModel userModel, double newBudget) async {
     totalAmount = newBudget;
+    print("New Budget: $totalAmount");
 
     try {
       await FirebaseFirestore.instance.collection('budget').doc(userModel.uid).update({

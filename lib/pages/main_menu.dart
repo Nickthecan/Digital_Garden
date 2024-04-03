@@ -37,6 +37,7 @@ class _MainMenuState extends State<MainMenu> {
     budgetModel = data['budgetModel'];
     purchases = data['purchaseList'];
     treeStatus = await userModel.calculateTreeStatus(budgetModel, purchases);
+    print("Data loaded in the Main_menu");
 
     setState(() {
       isLoading = false;
@@ -153,6 +154,15 @@ class _MainMenuState extends State<MainMenu> {
                                         'userModel': userModel,
                                         'budgetModel': budgetModel,
                                         'purchaseList': purchases,
+                                      }).then((_) {
+                                        if (mounted) {
+                                          setState(() {
+                                            isLoading = true;
+                                          });
+                                          _loadData().then((_) {
+                                            isLoading = false;
+                                          });
+                                        }
                                       });
                                     },
                                     style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),
@@ -187,6 +197,15 @@ class _MainMenuState extends State<MainMenu> {
                                         'userModel': userModel,
                                         'budgetModel': budgetModel,
                                         'purchaseList': purchases,
+                                      }).then((_) {
+                                        if (mounted) {
+                                          setState(() {
+                                            isLoading = true;
+                                          });
+                                          _loadData().then((_) {
+                                            isLoading = false;
+                                          });
+                                        }
                                       });
                                     },
                                     style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),
