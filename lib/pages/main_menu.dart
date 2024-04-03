@@ -37,12 +37,12 @@ class _MainMenuState extends State<MainMenu> {
     budgetModel = data['budgetModel'];
     purchases = data['purchaseList'];
     treeStatus = await userModel.calculateTreeStatus(budgetModel, purchases);
-    print("Data loaded in the Main_menu");
 
     setState(() {
       isLoading = false;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
@@ -78,11 +78,11 @@ class _MainMenuState extends State<MainMenu> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                       child: TextButton(
-                          onPressed: () {
-                            FirebaseAuth.instance.signOut();
-                            Navigator.pop(context);
-                          },
-                          child: Text("Sign out")),
+                        onPressed: () {
+                          FirebaseAuth.instance.signOut();
+                          Navigator.pop(context);
+                        },
+                        child: Text("Sign out")),
                     ),
                     Center(
                       child: Image(
@@ -98,12 +98,12 @@ class _MainMenuState extends State<MainMenu> {
               hasScrollBody: false,
               child: Container(
                 decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: [0.0, 0.5, 0.5 , 1.0],
-                      colors: [Color(0xFF58E47F), Color(0xFF58E47F) , Color(0xFFD2D2D2), Color(0xFFD2D2D2)],
-                    )
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: [0.0, 0.5, 0.5 , 1.0],
+                    colors: [Color(0xFF58E47F), Color(0xFF58E47F) , Color(0xFFD2D2D2), Color(0xFFD2D2D2)],
+                  )
                 ),
                 //At a glance Column
                 child: Column(
@@ -165,8 +165,8 @@ class _MainMenuState extends State<MainMenu> {
                                         }
                                       });
                                     },
-                                    style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),
-                                    child: Image.network('https://img.icons8.com/sf-regular/48/literature.png', width: 32, height: 32,),
+                                    style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12)),
+                                    child: Image.network('https://img.icons8.com/sf-regular/48/literature.png', width: 32, height: 32),
                                   ),
                                   SizedBox(height: 8),
                                   Text("Plan", style: TextStyle(color: Color(0xF22F2F2F), fontWeight: FontWeight.w500)),
@@ -182,8 +182,8 @@ class _MainMenuState extends State<MainMenu> {
                                         'purchaseList': purchases,
                                       });
                                     },
-                                    style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),
-                                    child: Image.network('https://img.icons8.com/material-outlined/24/graph.png', width: 32, height: 32,),
+                                    style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12)),
+                                    child: Image.network('https://img.icons8.com/material-outlined/24/graph.png', width: 32, height: 32),
                                   ),
                                   SizedBox(height: 8),
                                   Text("Track", style: TextStyle(color: Color(0xF22F2F2F), fontWeight: FontWeight.w500)),
@@ -208,8 +208,8 @@ class _MainMenuState extends State<MainMenu> {
                                         }
                                       });
                                     },
-                                    style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),
-                                    child: Image.network('https://img.icons8.com/material-outlined/24/purchase-order.png', width: 32, height: 32,),
+                                    style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12)),
+                                    child: Image.network('https://img.icons8.com/material-outlined/24/purchase-order.png', width: 32, height: 32),
                                   ),
                                   SizedBox(height: 8),
                                   Text("Expenses", style: TextStyle(color: Color(0xF22F2F2F), fontWeight: FontWeight.w500)),
@@ -223,8 +223,8 @@ class _MainMenuState extends State<MainMenu> {
                                         'userModel': userModel,
                                       });
                                     },
-                                    style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12),),
-                                    child: Image.network('https://img.icons8.com/?size=256&id=82535&format=png', width: 32, height: 32,),
+                                    style: ElevatedButton.styleFrom(shape: CircleBorder(), padding: EdgeInsets.all(12)),
+                                    child: Image.network('https://img.icons8.com/?size=256&id=82535&format=png', width: 32, height: 32),
                                   ),
                                   SizedBox(height: 8),
                                   Text("Settings", style: TextStyle(color: Color(0xF22F2F2F), fontWeight: FontWeight.w500)),

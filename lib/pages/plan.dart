@@ -45,9 +45,9 @@ class _PlanState extends State<Plan> {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
                 child: Text("Spending Planner", style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 32,
-                    color: Colors.white),),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 32,
+                  color: Colors.white)),
               ),
             ),
           ),
@@ -74,32 +74,35 @@ class _PlanState extends State<Plan> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
                       child: Text("Month budget", style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          color: Color(0xF22F2F2F)),),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                        color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
                       child: Text("\$${budgetModel.calculateAmountRemaining(purchases) >= 0 ? budgetModel.calculateAmountRemaining(purchases).toStringAsFixed(2) : 0} left for ${getRemainingDays()} days", style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                          color: Color(0xF22F2F2F)),),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                        color: Color(0xF22F2F2F))),
                     ),
                     Center(
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
                         child: CircularPercentIndicator(radius: 140,
-                            lineWidth: 45,
-                            percent: (budgetModel.calculateAmountSpentThisMonth(purchases, DateTime.now().month) / budgetModel.totalAmount) <= 1 ? budgetModel.calculateAmountSpentThisMonth(purchases, DateTime.now().month) / budgetModel.totalAmount : 1,
-                            progressColor: Color(0xFF58E47F),
-                            backgroundColor: Color(0xFFD3D3D3),
-                            circularStrokeCap: CircularStrokeCap.round,
-                            center: Text('${((budgetModel.calculateAmountSpentThisMonth(purchases, DateTime.now().month) / budgetModel.totalAmount) * 100).toInt() <= 100 ? ((budgetModel.calculateAmountSpentThisMonth(purchases, DateTime.now().month) / budgetModel.totalAmount) * 100).toInt() : 100}%\nSpent',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 40,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xF22F2F2F),
-                                    height: 1))),
+                          lineWidth: 45,
+                          percent: (budgetModel.calculateAmountSpentThisMonth(purchases, DateTime.now().month) / budgetModel.totalAmount) <= 1 ? budgetModel.calculateAmountSpentThisMonth(purchases, DateTime.now().month) / budgetModel.totalAmount : 1,
+                          progressColor: Color(0xFF58E47F),
+                          backgroundColor: Color(0xFFD3D3D3),
+                          circularStrokeCap: CircularStrokeCap.round,
+                          center: Text('${((budgetModel.calculateAmountSpentThisMonth(purchases, DateTime.now().month) / budgetModel.totalAmount) * 100).toInt() <= 100 ? ((budgetModel.calculateAmountSpentThisMonth(purchases, DateTime.now().month) / budgetModel.totalAmount) * 100).toInt() : 100}%\nSpent',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xF22F2F2F),
+                              height: 1
+                            )
+                          )
+                        ),
                       ),
                     ),
                     Padding(
@@ -108,13 +111,13 @@ class _PlanState extends State<Plan> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("Spent", style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                              color: Color(0xF22F2F2F)),),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                            color: Color(0xF22F2F2F))),
                           Text("\$${budgetModel.calculateAmountSpentThisMonth(purchases, DateTime.now().month).toStringAsFixed(2)}", style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                              color: Color(0xF22F2F2F)),),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                            color: Color(0xF22F2F2F))),
                         ],
                       ),
                     ),
@@ -126,11 +129,11 @@ class _PlanState extends State<Plan> {
                           Text("Remaining", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
-                              color: Color(0xF22F2F2F)),),
+                              color: Color(0xF22F2F2F))),
                           Text("\$${budgetModel.calculateAmountRemaining(purchases) >= 0 ? budgetModel.calculateAmountRemaining(purchases).toStringAsFixed(2) : 0}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
-                              color: Color(0xF22F2F2F)),),
+                              color: Color(0xF22F2F2F))),
                         ],
                       ),
                     ),
@@ -142,11 +145,11 @@ class _PlanState extends State<Plan> {
                           Text("Your Budget", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
-                              color: Color(0xF22F2F2F)),),
+                              color: Color(0xF22F2F2F))),
                           Text("\$${budgetModel.totalAmount.toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
-                              color: Color(0xF22F2F2F)),),
+                              color: Color(0xF22F2F2F))),
                         ],
                       ),
                     ),
@@ -203,21 +206,21 @@ class _PlanState extends State<Plan> {
                       child: Text("Categories", style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
-                          color: Color(0xF22F2F2F)),),
+                          color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
                       child: Text("Food and Drink", style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
-                          color: Color(0xF22F2F2F)),),
+                          color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                       child: LinearPercentIndicator(lineHeight: 15,
                           progressColor: Color(0xFF58E47F),
                           backgroundColor: Color(0xFFD3D3D3),
-                          percent: budgetModel.calculateAmountSpentByCategory(purchases, "Food and Drink", DateTime.now().month) / budgetModel.totalAmount,
+                          percent: (budgetModel.calculateAmountSpentByCategory(purchases, "Food and Drink", DateTime.now().month) / budgetModel.totalAmount) <= 1 ? budgetModel.calculateAmountSpentByCategory(purchases, "Food and Drink", DateTime.now().month) / budgetModel.totalAmount : 1,
                           barRadius: Radius.circular(30)),
                     ),
                     Row(
@@ -228,7 +231,7 @@ class _PlanState extends State<Plan> {
                           child: Text("\$${budgetModel.calculateAmountSpentByCategory(purchases, "Food and Drink", DateTime.now().month).toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
-                              color: Color(0xF22F2F2F)),),
+                              color: Color(0xF22F2F2F))),
                         ),
                       ],
                     ),
@@ -237,14 +240,14 @@ class _PlanState extends State<Plan> {
                       child: Text("Shopping", style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
-                          color: Color(0xF22F2F2F)),),
+                          color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                       child: LinearPercentIndicator(lineHeight: 15,
                           progressColor: Color(0xFF58E47F),
                           backgroundColor: Color(0xFFD3D3D3),
-                          percent: budgetModel.calculateAmountSpentByCategory(purchases, "Shopping", DateTime.now().month) / budgetModel.totalAmount,
+                          percent: (budgetModel.calculateAmountSpentByCategory(purchases, "Shopping", DateTime.now().month) / budgetModel.totalAmount) <= 1 ? budgetModel.calculateAmountSpentByCategory(purchases, "Shopping", DateTime.now().month) / budgetModel.totalAmount : 1,
                           barRadius: Radius.circular(30)),
                     ),
                     Row(
@@ -255,7 +258,7 @@ class _PlanState extends State<Plan> {
                           child: Text("\$${budgetModel.calculateAmountSpentByCategory(purchases, "Shopping", DateTime.now().month).toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
-                              color: Color(0xF22F2F2F)),),
+                              color: Color(0xF22F2F2F))),
                         ),
                       ],
                     ),
@@ -264,14 +267,14 @@ class _PlanState extends State<Plan> {
                       child: Text("Entertainment", style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
-                          color: Color(0xF22F2F2F)),),
+                          color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                       child: LinearPercentIndicator(lineHeight: 15,
                           progressColor: Color(0xFF58E47F),
                           backgroundColor: Color(0xFFD3D3D3),
-                          percent: budgetModel.calculateAmountSpentByCategory(purchases, "Entertainment", DateTime.now().month) / budgetModel.totalAmount,
+                          percent: (budgetModel.calculateAmountSpentByCategory(purchases, "Entertainment", DateTime.now().month) / budgetModel.totalAmount) <= 1 ? budgetModel.calculateAmountSpentByCategory(purchases, "Entertainment", DateTime.now().month) / budgetModel.totalAmount : 1,
                           barRadius: Radius.circular(30)),
                     ),
                     Row(
@@ -282,7 +285,7 @@ class _PlanState extends State<Plan> {
                           child: Text("\$${budgetModel.calculateAmountSpentByCategory(purchases, "Entertainment", DateTime.now().month).toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
-                              color: Color(0xF22F2F2F)),),
+                              color: Color(0xF22F2F2F))),
                         ),
                       ],
                     ),
@@ -291,14 +294,14 @@ class _PlanState extends State<Plan> {
                       child: Text("Bills", style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
-                          color: Color(0xF22F2F2F)),),
+                          color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                       child: LinearPercentIndicator(lineHeight: 15,
                           progressColor: Color(0xFF58E47F),
                           backgroundColor: Color(0xFFD3D3D3),
-                          percent: budgetModel.calculateAmountSpentByCategory(purchases, "Bills", DateTime.now().month) / budgetModel.totalAmount,
+                          percent: (budgetModel.calculateAmountSpentByCategory(purchases, "Bills", DateTime.now().month) / budgetModel.totalAmount) <= 1 ? budgetModel.calculateAmountSpentByCategory(purchases, "Bills", DateTime.now().month) / budgetModel.totalAmount : 1,
                           barRadius: Radius.circular(30)),
                     ),
                     Row(
@@ -309,7 +312,7 @@ class _PlanState extends State<Plan> {
                           child: Text("\$${budgetModel.calculateAmountSpentByCategory(purchases, "Bills", DateTime.now().month).toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
-                              color: Color(0xF22F2F2F)),),
+                              color: Color(0xF22F2F2F))),
                         ),
                       ],
                     ),
@@ -318,14 +321,14 @@ class _PlanState extends State<Plan> {
                       child: Text("Gas", style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
-                          color: Color(0xF22F2F2F)),),
+                          color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                       child: LinearPercentIndicator(lineHeight: 15,
                           progressColor: Color(0xFF58E47F),
                           backgroundColor: Color(0xFFD3D3D3),
-                          percent: budgetModel.calculateAmountSpentByCategory(purchases, "Gas", DateTime.now().month) / budgetModel.totalAmount,
+                          percent: (budgetModel.calculateAmountSpentByCategory(purchases, "Gas", DateTime.now().month) / budgetModel.totalAmount) <= 1 ? budgetModel.calculateAmountSpentByCategory(purchases, "Gas", DateTime.now().month) / budgetModel.totalAmount : 1,
                           barRadius: Radius.circular(30)),
                     ),
                     Row(
@@ -336,11 +339,11 @@ class _PlanState extends State<Plan> {
                           child: Text("\$${budgetModel.calculateAmountSpentByCategory(purchases, "Gas", DateTime.now().month).toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
-                              color: Color(0xF22F2F2F)),),
+                              color: Color(0xF22F2F2F))),
                         ),
                       ],
                     ),
-                    SizedBox(height: 30,),
+                    SizedBox(height: 30),
                     /*Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [

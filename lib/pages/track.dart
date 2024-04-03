@@ -43,7 +43,7 @@ class _TrackState extends State<Track> {
                 child: Text("Tracking", style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 32,
-                    color: Colors.white),),
+                    color: Colors.white)),
               ),
             ),
           ),
@@ -72,16 +72,16 @@ class _TrackState extends State<Track> {
                       child: Text("Month spending", style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
-                          color: Color(0xF22F2F2F)),),
+                          color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
                       child: Text("Daily spending", style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
-                          color: Color(0xF22F2F2F)),),
+                          color: Color(0xF22F2F2F))),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(height: 10),
                     for (int i = 1; i <= calculateNumberOfDays(); i++)
                       _buildDaySpending(i),
                   ],
@@ -105,7 +105,7 @@ class _TrackState extends State<Track> {
         purchases, dayNumber, DateTime
         .now()
         .month);
-    double progressBarPercentage = amountSpentThatDay / budgetModel.totalAmount;
+    double progressBarPercentage = (amountSpentThatDay / budgetModel.totalAmount) <= 1 ? amountSpentThatDay / budgetModel.totalAmount : 1;
 
     setState(() {});
 
@@ -116,7 +116,7 @@ class _TrackState extends State<Track> {
         children: [
           Text("$dayNumber", style: TextStyle(fontWeight: FontWeight.w600,
               fontSize: 16,
-              color: Color(0xF22F2F2F)),),
+              color: Color(0xF22F2F2F))),
           Expanded(
               child: LinearPercentIndicator(lineHeight: 10,
                   progressColor: Color(0xFF58E47F),
@@ -126,7 +126,7 @@ class _TrackState extends State<Track> {
           Text("\$${amountSpentThatDay.toStringAsFixed(2)}", style: TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 16,
-              color: Color(0xF22F2F2F)),),
+              color: Color(0xF22F2F2F))),
         ],
       ),
     );
@@ -157,7 +157,7 @@ class _TrackState extends State<Track> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                        child: Text("Weekly spending", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                        child: Text("Weekly spending", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F))),
                       ),
                       for (int i = 1; i <= calculateNumberOfWeeks(); i++)
                         _buildWeekSpending(i),
@@ -166,10 +166,10 @@ class _TrackState extends State<Track> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text("Week 1", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                            Text("Week 1", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F))),
                             Expanded(
                                 child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                            Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
+                            Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F))),
                           ],
                         ),
                       ),
@@ -178,10 +178,10 @@ class _TrackState extends State<Track> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text("Week 2", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                            Text("Week 2", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F))),
                             Expanded(
                                 child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                            Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
+                            Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F))),
                           ],
                         ),
                       ),
@@ -190,10 +190,10 @@ class _TrackState extends State<Track> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text("Week 3", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                            Text("Week 3", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F))),
                             Expanded(
                                 child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                            Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
+                            Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F))),
                           ],
                         ),
                       ),
@@ -202,10 +202,10 @@ class _TrackState extends State<Track> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text("Week 4", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                            Text("Week 4", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F))),
                             Expanded(
                                 child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                            Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
+                            Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F))),
                           ],
                         ),
                       ),
@@ -214,10 +214,10 @@ class _TrackState extends State<Track> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text("Week 5", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                            Text("Week 5", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F))),
                             Expanded(
                                 child: LinearPercentIndicator(lineHeight: 10, progressColor: Color(0xFF58E47F), backgroundColor: Colors.white, percent: 0.0, barRadius: Radius.circular(30))),
-                            Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F)),),
+                            Text("\$0.00", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color(0xF22F2F2F))),
                           ],
                         ),
                       ),

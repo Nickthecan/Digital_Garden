@@ -27,7 +27,7 @@ class _GoalsState extends State<Goals> {
             child: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                child: Text("Goals", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32, color: Colors.white),),
+                child: Text("Goals", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32, color: Colors.white)),
               ),
             ),
           ),
@@ -53,81 +53,81 @@ class _GoalsState extends State<Goals> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Let's get started", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
+                      child: Text("Let's get started", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
-                      child: Text("Choose your goals", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                      child: Text("Choose your goals", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Retirement", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
+                          Text("Retirement", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
                           CheckBox(),
                         ],
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 70, 0),
-                      child: Text("Be ready for retirement with a plan for future assets and expenses.", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12, color: Color(0xF22F2F2F)),),
+                      child: Text("Be ready for retirement with a plan for future assets and expenses.", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Education", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
+                          Text("Education", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
                           CheckBox(),
                         ],
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 70, 0),
-                      child: Text("Be ready to tackle the rising education costs.", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12, color: Color(0xF22F2F2F)),),
+                      child: Text("Be ready to tackle the rising education costs.", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Home", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
+                          Text("Home", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
                           CheckBox(),
                         ],
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 70, 0),
-                      child: Text("Save for primary residence, secondary residence or an investment property.", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12, color: Color(0xF22F2F2F)),),
+                      child: Text("Save for primary residence, secondary residence or an investment property.", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Major Purchase", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
+                          Text("Major Purchase", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
                           CheckBox(),
                         ],
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 70, 0),
-                      child: Text("Make a significant one-time purchase, such as a car.", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12, color: Color(0xF22F2F2F)),),
+                      child: Text("Make a significant one-time purchase, such as a car.", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Travel", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
+                          Text("Travel", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
                           CheckBox(),
                         ],
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 70, 0),
-                      child: Text("Set aside money for that big trip that you are planning.", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12, color: Color(0xF22F2F2F)),),
+                      child: Text("Set aside money for that big trip that you are planning.", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12, color: Color(0xF22F2F2F))),
                     ),
                   ],
                 ),
@@ -156,15 +156,15 @@ class _GoalsState extends State<Goals> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Check your info", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
+                      child: Text("Check your info", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
-                      child: Text("update your info to create a better goal estimate", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                      child: Text("update your info to create a better goal estimate", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 40, 0, 0),
-                      child: Text("Marital status", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                      child: Text("Marital status", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
@@ -179,7 +179,7 @@ class _GoalsState extends State<Goals> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Employment status", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                      child: Text("Employment status", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                         padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
@@ -194,7 +194,7 @@ class _GoalsState extends State<Goals> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Annual income", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                      child: Text("Annual income", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
@@ -235,11 +235,11 @@ class _GoalsState extends State<Goals> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Tell us the details", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
+                      child: Text("Tell us the details", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Goal name", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                      child: Text("Goal name", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
@@ -250,7 +250,7 @@ class _GoalsState extends State<Goals> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Spending frequency", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                      child: Text("Spending frequency", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
@@ -287,7 +287,7 @@ class _GoalsState extends State<Goals> {
                                 ),
                                 elevation: 8, // No elevation
                               ),
-                              child: Text('Annual', style: TextStyle(color: isAnnual ? Colors.white : Color(0xFF58E47F)),),
+                              child: Text('Annual', style: TextStyle(color: isAnnual ? Colors.white : Color(0xFF58E47F))),
                             ),
                           ),
                         ],
@@ -295,7 +295,7 @@ class _GoalsState extends State<Goals> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Spending ${isAnnual ? 'years' : 'year'}", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                      child: Text("Spending ${isAnnual ? 'years' : 'year'}", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
@@ -311,7 +311,7 @@ class _GoalsState extends State<Goals> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Number of years", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                              Text("Number of years", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F))),
                               SizedBox(
                                 width: 325,
                                 child: TextField(),
@@ -322,7 +322,7 @@ class _GoalsState extends State<Goals> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("${isAnnual ? 'Annual' : 'One-time'} amount", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F)),),
+                      child: Text("${isAnnual ? 'Annual' : 'One-time'} amount", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),

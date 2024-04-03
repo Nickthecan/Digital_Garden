@@ -18,7 +18,7 @@ class _GoalPageState extends State<GoalPage> {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-              child: Text("Goals", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32, color: Colors.white),),
+              child: Text("Goals", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32, color: Colors.white)),
             ),
             Expanded(
               child: Padding(

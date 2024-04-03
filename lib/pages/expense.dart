@@ -41,7 +41,7 @@ class _ExpenseState extends State<Expense> {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-              child: Text("Add an Expense", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32, color: Colors.white),),
+              child: Text("Add an Expense", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32, color: Colors.white)),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
@@ -65,7 +65,7 @@ class _ExpenseState extends State<Expense> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Name of purchase", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
+                      child: Text("Name of purchase", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
@@ -75,7 +75,7 @@ class _ExpenseState extends State<Expense> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Cost of purchase", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
+                      child: Text("Cost of purchase", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
@@ -90,7 +90,7 @@ class _ExpenseState extends State<Expense> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Category", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F)),),
+                      child: Text("Category", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
                         padding: const EdgeInsets.fromLTRB(20, 20, 30, 0),

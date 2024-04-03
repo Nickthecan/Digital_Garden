@@ -27,7 +27,7 @@ class _SettingsState extends State<Settings> {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                child: Text("Settings", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32, color: Colors.white),),
+                child: Text("Settings", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32, color: Colors.white)),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
@@ -54,8 +54,8 @@ class _SettingsState extends State<Settings> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Image.network('https://img.icons8.com/pastel-glyph/64/user-male-circle.png', width: 64, height: 64,),
-                            Text("First Last", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xF22F2F2F)),),
+                            Image.network('https://img.icons8.com/pastel-glyph/64/user-male-circle.png', width: 64, height: 64),
+                            Text("First Last", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xF22F2F2F))),
                           ],
                         ),
                       ),
@@ -69,7 +69,7 @@ class _SettingsState extends State<Settings> {
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-                        child: Text("Change name", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xF22F2F2F)),),
+                        child: Text("Change name", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xF22F2F2F))),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
@@ -81,7 +81,7 @@ class _SettingsState extends State<Settings> {
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-                        child: Text("Change password", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xF22F2F2F)),),
+                        child: Text("Change password", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xF22F2F2F))),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
@@ -93,7 +93,7 @@ class _SettingsState extends State<Settings> {
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-                        child: Text("Log out", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xF22F2F2F)),),
+                        child: Text("Log out", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xF22F2F2F))),
                       ),
                     ],
                   ),

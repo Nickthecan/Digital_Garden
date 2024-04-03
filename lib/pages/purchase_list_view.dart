@@ -43,7 +43,7 @@ class _PurchaseListViewState extends State<PurchaseListView> {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-              child: Text("Purchases", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32, color: Colors.white),),
+              child: Text("Purchases", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32, color: Colors.white)),
             ),
             Expanded(
               child: Padding(
@@ -103,7 +103,7 @@ class _PurchaseListViewState extends State<PurchaseListView> {
                                     });
                                   },
                                   title: Text("${purchase.purchaseName}"),
-                                  subtitle: Text("\$${purchase.cost.toStringAsFixed(2)}", style: TextStyle(fontSize: 20),),
+                                  subtitle: Text("\$${purchase.cost.toStringAsFixed(2)}", style: TextStyle(fontSize: 20)),
                                 ),
                                 if (expandedStates[index])
                                   Padding(
@@ -112,7 +112,7 @@ class _PurchaseListViewState extends State<PurchaseListView> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text("Category: ${purchase.category}"),
-                                        SizedBox(height: 10,),
+                                        SizedBox(height: 10),
                                         Text("Date Purchased: ${calculateDate(purchase.datePurchased)}")
                                       ],
                                     ),

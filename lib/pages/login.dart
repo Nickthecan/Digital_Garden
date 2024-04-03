@@ -28,7 +28,6 @@ class _LoginState extends State<Login> {
   TextEditingController _pwMatchController = TextEditingController();
   final AuthServices _auth = AuthServices();
 
-
   @override
   void initState() {
     super.initState();
@@ -36,6 +35,7 @@ class _LoginState extends State<Login> {
     textFocusNode = FocusNode();
     pwFocusNode = FocusNode();
     confirmpwFocusNode = FocusNode();
+
     titleOpacity = 1;
     isSignUp = false;
 
@@ -91,17 +91,14 @@ class _LoginState extends State<Login> {
                   AnimatedOpacity(
                     duration: Duration(milliseconds: 300),
                     opacity: titleOpacity,
-                    child: Text(
-                      'Digital\nGarden',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 40,
-                        letterSpacing: 2,
-                        fontWeight: FontWeight.w900,
-                        )),
+                    child: Text('Digital\nGarden', textAlign: TextAlign.center, style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 40,
+                      letterSpacing: 2,
+                      fontWeight: FontWeight.w900,
+                    )),
                   ),
-                  SizedBox(height: 90,),
+                  SizedBox(height: 90),
                   AnimatedContainer(
                     duration: Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
@@ -127,7 +124,7 @@ class _LoginState extends State<Login> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 20,),
+                              SizedBox(height: 20),
                               Text("Username", style: TextStyle(
                                 color: Color(0xF22F2F2F),
                                 fontSize: 16,
@@ -141,7 +138,7 @@ class _LoginState extends State<Login> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(height: 10),
                         Text("Email", style: TextStyle(
                           color: Color(0xF22F2F2F),
                           fontSize: 16,
@@ -151,7 +148,7 @@ class _LoginState extends State<Login> {
                           focusNode: textFocusNode,
                           controller: _emailController,
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(height: 10),
                         Text("Password", style: TextStyle(
                           color: Color(0xF22F2F2F),
                           fontSize: 16,
@@ -163,26 +160,25 @@ class _LoginState extends State<Login> {
                           controller: _passwordController,
                         ),
                         Visibility(
-                            visible: isSignUp,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(height: 10,),
-                                Text("Confirm Password", style: TextStyle(
-                                  color: Color(0xF22F2F2F),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                )),
-                                TextField(
-                                  obscureText: true,
-                                  focusNode: confirmpwFocusNode,
-                                  controller: _pwMatchController,
-                                ),
-
-                              ],
-                            ),
+                          visible: isSignUp,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 10),
+                              Text("Confirm Password", style: TextStyle(
+                                color: Color(0xF22F2F2F),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              )),
+                              TextField(
+                                obscureText: true,
+                                focusNode: confirmpwFocusNode,
+                                controller: _pwMatchController,
+                              ),
+                            ],
+                          ),
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(height: 10),
                         ElevatedButton(
                           onPressed: () {
                             if (isSignUp) {
@@ -213,7 +209,7 @@ class _LoginState extends State<Login> {
                         isSignUp = !isSignUp;
                       });
                     },
-                        child: Text("Sign ${isSignUp ? 'in' : 'up'}", style: TextStyle(color: Color(0xF22F2F2F)))
+                      child: Text("Sign ${isSignUp ? 'in' : 'up'}", style: TextStyle(color: Color(0xF22F2F2F)))
                     ),
                   ),
                 ],
@@ -235,17 +231,14 @@ class _LoginState extends State<Login> {
       DocumentSnapshot userSnapshot = await FirebaseFirestore.instance.collection('user').doc(user.uid).get();
       if (userSnapshot.exists) {
         String username = userSnapshot['username'];
-        UserModel userModel = UserModel(uid: user.uid, username: username, treeLevel: userSnapshot['treeLevel'], streak: userSnapshot['streak'].toDate(), isTreeAlive: userSnapshot['isTreeAlive']);
-        print("User is successfully logged in");
-        print('userID: ${userModel.uid}');
-        print('username: ${userModel.username}');
-        print('tree level: ${userModel.treeLevel}');
-        print('streak since: ${userModel.streak}');
-        print("is the user's tree alive?: ${userModel.isTreeAlive}");
-
+        UserModel userModel = UserModel(
+          uid: user.uid,
+          username: username,
+          treeLevel: userSnapshot['treeLevel'],
+          streak: userSnapshot['streak'].toDate(),
+          isTreeAlive: userSnapshot['isTreeAlive']
+        );
         BudgetModel? budgetModel = await _fetchBudget(userModel);
-        print('Total Amount ${budgetModel?.totalAmount}');
-        
         List<PurchaseModel> purchaseList = await _fetchPurchases(userModel);
 
         if (budgetModel != null) {
@@ -269,6 +262,7 @@ class _LoginState extends State<Login> {
       print("Error occurred");
     }
   }
+
   void _signUp() async {
     String userName = _userNameController.text;
     String email = _emailController.text;
@@ -285,17 +279,15 @@ class _LoginState extends State<Login> {
           'streak': Timestamp.now(),
           'isTreeAlive': true,
         });
-        UserModel userModel = UserModel(uid: user.uid, username: userName, treeLevel: 1, streak: DateTime.now(), isTreeAlive: true);
-        print("User is successfully created");
-        print('userID: ${userModel.uid}');
-        print('username: ${userModel.username}');
-        print('tree level: ${userModel.treeLevel}');
-        print('streak since: ${userModel.streak}');
-        print("is the user's tree alive?: ${userModel.isTreeAlive}");
+        UserModel userModel = UserModel(
+          uid: user.uid,
+          username: userName,
+          treeLevel: 1,
+          streak: DateTime.now(),
+          isTreeAlive: true
+        );
 
         BudgetModel? budgetModel = await _fetchBudget(userModel);
-        print('Total Amount ${budgetModel?.totalAmount}');
-
         await FirebaseFirestore.instance.collection('ids').doc(user.uid).set({
           'newGoalID': 0,
           'newPurchaseID': 0,
@@ -355,7 +347,14 @@ class _LoginState extends State<Login> {
 
       for (var doc in purchaseQuerySnapshot.docs) {
         if (doc['userID'] == userModel.uid) {
-          PurchaseModel purchaseModel = PurchaseModel(uid: userModel.uid, purchaseID: doc['purchaseID'], purchaseName: doc['purchaseName'], category: doc['category'], cost: doc['cost'], datePurchased: doc['date'].toDate());
+          PurchaseModel purchaseModel = PurchaseModel(
+            uid: userModel.uid,
+            purchaseID: doc['purchaseID'],
+            purchaseName: doc['purchaseName'],
+            category: doc['category'],
+            cost: doc['cost'],
+            datePurchased: doc['date'].toDate()
+          );
           dataList.add(purchaseModel);
         }
       }
