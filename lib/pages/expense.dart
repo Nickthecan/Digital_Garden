@@ -32,6 +32,14 @@ class _ExpenseState extends State<Expense> {
   }
 
   @override
+  void dispose() {
+    _nameController.dispose();
+    _purchaseCostController.dispose();
+    _categoryController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFD3D3D3),

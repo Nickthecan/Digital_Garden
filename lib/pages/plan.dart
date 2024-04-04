@@ -35,6 +35,12 @@ class _PlanState extends State<Plan> {
   }
 
   @override
+  void dispose() {
+    _budgetController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFD3D3D3),
@@ -164,8 +170,7 @@ class _PlanState extends State<Plan> {
                             },
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    8), // Adjust the borderRadius as needed
+                                borderRadius: BorderRadius.circular(8)
                               ),
                               elevation: 8,
                               foregroundColor: Colors.white,
@@ -344,6 +349,9 @@ class _PlanState extends State<Plan> {
                       ],
                     ),
                     SizedBox(height: 30),
+
+                    //won't be using this until another update
+
                     /*Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [

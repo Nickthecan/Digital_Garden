@@ -4,13 +4,28 @@ import 'package:digital_garden/features/models/purchase_model.dart';
 
 class UserModel {
   late final String uid;
-  late final String username;
+  late String username;
   late int treeLevel;
   late DateTime streak;
   late bool isTreeAlive;
 
   UserModel({ required this.uid, required this.username, required this.treeLevel, required this.streak, required this.isTreeAlive});
 
+  editUserName(String newUserName) async {
+    username = newUserName;
+    
+    try {
+      await FirebaseFirestore.instance.collection('user').doc(uid).update({
+        'username': newUserName,
+      });
+      print("username has been updated in the DB");
+    }
+    catch (e) {
+      print("Error editing the username");
+      print(e.toString());
+    }
+  }
+  
   Future<String> calculateTreeStatus(BudgetModel budgetModel, List<PurchaseModel> purchases) async {
     String typeOfTree = "tree";
 

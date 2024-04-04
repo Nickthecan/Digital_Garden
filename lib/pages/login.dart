@@ -322,15 +322,12 @@ class _LoginState extends State<Login> {
       if (documentSnapshot.exists) {
         Map<String, dynamic> budgetData = documentSnapshot.data() as Map<String, dynamic>;
         double totalAmount = budgetData['totalAmount'];
-
-        print('Budget Loaded');
         return BudgetModel(uid: userModel.uid, totalAmount: totalAmount);
       }
       else {
         FirebaseFirestore.instance.collection('budget').doc(userModel.uid).set({
           'totalAmount': 0.0,
         });
-        print('New Budget Created');
         return BudgetModel(uid: userModel.uid, totalAmount: 0.0);
       }
     }
@@ -366,10 +363,3 @@ class _LoginState extends State<Login> {
     }
   }
 }
-
-
-
-
-
-
-
