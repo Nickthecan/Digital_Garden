@@ -100,8 +100,8 @@ class _ExpenseState extends State<Expense> {
                             DropdownMenuEntry(value: 'food_drink', label: 'Food and Drink'),
                             DropdownMenuEntry(value: 'shopping', label: 'Shopping'),
                             DropdownMenuEntry(value: 'entertainment', label: 'Entertainment'),
-                            DropdownMenuEntry(value: 'bills', label: 'Bills'),
-                            DropdownMenuEntry(value: 'gas', label: 'Gas'),
+                            DropdownMenuEntry(value: 'bills_and_utilities', label: 'Bills and Utilities'),
+                            DropdownMenuEntry(value: 'personal', label: 'Personal'),
                           ],
                           controller: _categoryController,
                         )

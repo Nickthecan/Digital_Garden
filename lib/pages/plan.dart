@@ -291,7 +291,7 @@ class _PlanState extends State<Plan> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: Text("Bills", style: TextStyle(
+                      child: Text("Bills and Utilities", style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
                           color: Color(0xF22F2F2F))),
@@ -301,7 +301,7 @@ class _PlanState extends State<Plan> {
                       child: LinearPercentIndicator(lineHeight: 15,
                           progressColor: Color(0xFF58E47F),
                           backgroundColor: Color(0xFFD3D3D3),
-                          percent: (budgetModel.calculateAmountSpentByCategory(purchases, "Bills", DateTime.now().month) / budgetModel.totalAmount) <= 1 ? budgetModel.calculateAmountSpentByCategory(purchases, "Bills", DateTime.now().month) / budgetModel.totalAmount : 1,
+                          percent: (budgetModel.calculateAmountSpentByCategory(purchases, "Bills and Utilities", DateTime.now().month) / budgetModel.totalAmount) <= 1 ? budgetModel.calculateAmountSpentByCategory(purchases, "Bills and Utilities", DateTime.now().month) / budgetModel.totalAmount : 1,
                           barRadius: Radius.circular(30)),
                     ),
                     Row(
@@ -309,7 +309,7 @@ class _PlanState extends State<Plan> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 20, 0),
-                          child: Text("\$${budgetModel.calculateAmountSpentByCategory(purchases, "Bills", DateTime.now().month).toStringAsFixed(2)}", style: TextStyle(
+                          child: Text("\$${budgetModel.calculateAmountSpentByCategory(purchases, "Bills and Utilities", DateTime.now().month).toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F))),
@@ -318,7 +318,7 @@ class _PlanState extends State<Plan> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: Text("Gas", style: TextStyle(
+                      child: Text("Personal", style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
                           color: Color(0xF22F2F2F))),
@@ -328,7 +328,7 @@ class _PlanState extends State<Plan> {
                       child: LinearPercentIndicator(lineHeight: 15,
                           progressColor: Color(0xFF58E47F),
                           backgroundColor: Color(0xFFD3D3D3),
-                          percent: (budgetModel.calculateAmountSpentByCategory(purchases, "Gas", DateTime.now().month) / budgetModel.totalAmount) <= 1 ? budgetModel.calculateAmountSpentByCategory(purchases, "Gas", DateTime.now().month) / budgetModel.totalAmount : 1,
+                          percent: (budgetModel.calculateAmountSpentByCategory(purchases, "Personal", DateTime.now().month) / budgetModel.totalAmount) <= 1 ? budgetModel.calculateAmountSpentByCategory(purchases, "Personal", DateTime.now().month) / budgetModel.totalAmount : 1,
                           barRadius: Radius.circular(30)),
                     ),
                     Row(
@@ -336,7 +336,7 @@ class _PlanState extends State<Plan> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 20, 0),
-                          child: Text("\$${budgetModel.calculateAmountSpentByCategory(purchases, "Gas", DateTime.now().month).toStringAsFixed(2)}", style: TextStyle(
+                          child: Text("\$${budgetModel.calculateAmountSpentByCategory(purchases, "Personal", DateTime.now().month).toStringAsFixed(2)}", style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Color(0xF22F2F2F))),
