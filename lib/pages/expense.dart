@@ -51,8 +51,9 @@ class _ExpenseState extends State<Expense> {
               padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
               child: Text("Add an Expense", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32, color: Colors.white)),
             ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.1),
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
               child: Container(
                 width: 500,
                 height: 450,
@@ -101,9 +102,9 @@ class _ExpenseState extends State<Expense> {
                       child: Text("Category", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
                     ),
                     Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 20, 30, 0),
+                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                         child: DropdownMenu(
-                          width: 335,
+                          width: MediaQuery.of(context).size.width * 0.8,
                           dropdownMenuEntries: [
                             DropdownMenuEntry(value: 'food_drink', label: 'Food and Drink'),
                             DropdownMenuEntry(value: 'shopping', label: 'Shopping'),

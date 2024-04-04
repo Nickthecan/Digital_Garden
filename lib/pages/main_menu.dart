@@ -69,27 +69,30 @@ class _MainMenuState extends State<MainMenu> {
         body: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-              child: Container(
-                height: 407.143,
-                color: Color(0xFF3C9FE7),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-                      child: TextButton(
-                        onPressed: () {
-                          FirebaseAuth.instance.signOut();
-                          Navigator.pop(context);
-                        },
-                        child: Text("Sign out")),
-                    ),
-                    Center(
-                      child: Image(
+              child: Padding(
+                padding: const EdgeInsets.all(0.0),
+                child: Container(
+                  height: 416,
+                  color: Color(0xFF3C9FE7),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      SafeArea(
+                        child: TextButton(
+                          onPressed: () {
+                            FirebaseAuth.instance.signOut();
+                            Navigator.pop(context);
+                          },
+                          child: Text("Sign out")),
+                      ),
+                      Expanded(
+                          child: Container()
+                      ),
+                      Image(
                         image: AssetImage('assets/$treeStatus.png'),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
