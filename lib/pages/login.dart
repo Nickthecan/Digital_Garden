@@ -288,6 +288,8 @@ class _LoginState extends State<Login> {
         );
 
         BudgetModel? budgetModel = await _fetchBudget(userModel);
+        List<PurchaseModel> purchaseList = [];
+
         await FirebaseFirestore.instance.collection('ids').doc(user.uid).set({
           'newGoalID': 0,
           'newPurchaseID': 0,
@@ -297,6 +299,7 @@ class _LoginState extends State<Login> {
           Navigator.pushNamed(context, "/main_menu", arguments: {
             'userModel': userModel,
             'budgetModel': budgetModel,
+            'purchaseList': purchaseList,
           });
         }
         else {
@@ -326,9 +329,9 @@ class _LoginState extends State<Login> {
       }
       else {
         FirebaseFirestore.instance.collection('budget').doc(userModel.uid).set({
-          'totalAmount': 0.0,
+          'totalAmount': 100.0,
         });
-        return BudgetModel(uid: userModel.uid, totalAmount: 0.0);
+        return BudgetModel(uid: userModel.uid, totalAmount: 100.0);
       }
     }
     catch (e) {

@@ -44,6 +44,7 @@ dependencies:
   firebase_app_check: ^0.2.1+17
   intl: ^0.19.0
   loading_animation_widget: ^1.2.1
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +60,12 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/digital_garden_icon.png"
+  adaptive_icon_background: "#66ff99"
+  adaptive_icon_foreground: "assets/foreground.png"
 # The following section is specific to Flutter packages.
 flutter:
 
