@@ -44,116 +44,118 @@ class _ExpenseState extends State<Expense> {
     return Scaffold(
       backgroundColor: Color(0xFFD3D3D3),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-              child: Text("Add an Expense", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32, color: Colors.white)),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-              child: Container(
-                width: 500,
-                height: 450,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.3),
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                  color: Colors.white,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Name of purchase", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
-                      child: TextField(
-                        controller: _nameController,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Cost of purchase", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
-                      child: TextField(
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*(\.[0-9]{0,2})?$')),
-                        ],
-                        controller: _purchaseCostController,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Text("Category", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                        child: DropdownMenu(
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          dropdownMenuEntries: [
-                            DropdownMenuEntry(value: 'food_drink', label: 'Food and Drink'),
-                            DropdownMenuEntry(value: 'shopping', label: 'Shopping'),
-                            DropdownMenuEntry(value: 'entertainment', label: 'Entertainment'),
-                            DropdownMenuEntry(value: 'bills_and_utilities', label: 'Bills and Utilities'),
-                            DropdownMenuEntry(value: 'personal', label: 'Personal'),
-                          ],
-                          controller: _categoryController,
-                        )
-                    ),
-                  ],
-                ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+                child: Text("Add an Expense", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32, color: Colors.white)),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-              child: Container(
-                width: 500,
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    String name = _nameController.text;
-                    String purchaseCost = _purchaseCostController.text;
-                    String category = _categoryController.text;
-
-                    if (name.isNotEmpty && category.isNotEmpty && purchaseCost.isNotEmpty) {
-                      await _addExpense();
-                      Navigator.pop(context, purchases);
-                    }
-                    else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Please fill out all fields.'),
-                        ),
-                      );
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16), // Adjust the borderRadius as needed
-                    ),
-                    elevation: 8,
-                    foregroundColor: Colors.white, backgroundColor: Color(0xFF58E47F),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: Container(
+                  width: 500,
+                  height: 450,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.3),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                    color: Colors.white,
                   ),
-                  child: Text("Add Expense"),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+                        child: Text("Name of purchase", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
+                        child: TextField(
+                          controller: _nameController,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+                        child: Text("Cost of purchase", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
+                        child: TextField(
+                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: <TextInputFormatter>[
+                            FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*(\.[0-9]{0,2})?$')),
+                          ],
+                          controller: _purchaseCostController,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+                        child: Text("Category", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xF22F2F2F))),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                          child: DropdownMenu(
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            dropdownMenuEntries: [
+                              DropdownMenuEntry(value: 'food_drink', label: 'Food and Drink'),
+                              DropdownMenuEntry(value: 'shopping', label: 'Shopping'),
+                              DropdownMenuEntry(value: 'entertainment', label: 'Entertainment'),
+                              DropdownMenuEntry(value: 'bills_and_utilities', label: 'Bills and Utilities'),
+                              DropdownMenuEntry(value: 'personal', label: 'Personal'),
+                            ],
+                            controller: _categoryController,
+                          )
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ]
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                child: Container(
+                  width: 500,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      String name = _nameController.text;
+                      String purchaseCost = _purchaseCostController.text;
+                      String category = _categoryController.text;
+          
+                      if (name.isNotEmpty && category.isNotEmpty && purchaseCost.isNotEmpty) {
+                        await _addExpense();
+                        Navigator.pop(context, purchases);
+                      }
+                      else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Please fill out all fields.'),
+                          ),
+                        );
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16), // Adjust the borderRadius as needed
+                      ),
+                      elevation: 8,
+                      foregroundColor: Colors.white, backgroundColor: Color(0xFF58E47F),
+                    ),
+                    child: Text("Add Expense"),
+                  ),
+                ),
+              ),
+            ]
+          ),
         ),
       ),
     );

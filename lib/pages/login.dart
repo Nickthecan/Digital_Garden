@@ -48,7 +48,7 @@ class _LoginState extends State<Login> {
   void _handleFocus() {
     setState(() {
       if (isSignUp) {
-        containerOffset = (userNameFocusNode.hasFocus || textFocusNode.hasFocus || pwFocusNode.hasFocus || confirmpwFocusNode.hasFocus) ? -275 : 0;
+        containerOffset = (userNameFocusNode.hasFocus || textFocusNode.hasFocus || pwFocusNode.hasFocus || confirmpwFocusNode.hasFocus) ? -275 : -50;
       }
       else {
         containerOffset = (textFocusNode.hasFocus || pwFocusNode.hasFocus || confirmpwFocusNode.hasFocus) ? -150 : 0;
@@ -83,136 +83,138 @@ class _LoginState extends State<Login> {
         ),
         child: SafeArea(
           child: Center(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(50, 100, 50, 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  AnimatedOpacity(
-                    duration: Duration(milliseconds: 300),
-                    opacity: titleOpacity,
-                    child: Text('Digital\nGarden', textAlign: TextAlign.center, style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 40,
-                      letterSpacing: 2,
-                      fontWeight: FontWeight.w900,
-                    )),
-                  ),
-                  SizedBox(height: 90),
-                  AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                    transform: Matrix4.translationValues(0, containerOffset, 0),
-                    padding: EdgeInsets.fromLTRB(10, 10, 10, 30),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.3),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                      color: Colors.white,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(50, 100, 50, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    AnimatedOpacity(
+                      duration: Duration(milliseconds: 300),
+                      opacity: titleOpacity,
+                      child: Text('Digital\nGarden', textAlign: TextAlign.center, style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 40,
+                        letterSpacing: 2,
+                        fontWeight: FontWeight.w900,
+                      )),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Visibility(
-                          visible: isSignUp,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(height: 20),
-                              Text("Username", style: TextStyle(
-                                color: Color(0xF22F2F2F),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              )),
-                              TextField (
-                                focusNode: userNameFocusNode,
-                                controller: _userNameController,
-                              ),
-
-                            ],
+                    SizedBox(height: 90),
+                    AnimatedContainer(
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      transform: Matrix4.translationValues(0, containerOffset, 0),
+                      padding: EdgeInsets.fromLTRB(10, 10, 10, 30),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.3),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: Offset(0, 3),
                           ),
-                        ),
-                        SizedBox(height: 10),
-                        Text("Email", style: TextStyle(
-                          color: Color(0xF22F2F2F),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        )),
-                        TextField(
-                          focusNode: textFocusNode,
-                          controller: _emailController,
-                        ),
-                        SizedBox(height: 10),
-                        Text("Password", style: TextStyle(
-                          color: Color(0xF22F2F2F),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        )),
-                        TextField(
-                          obscureText: true,
-                          focusNode: pwFocusNode,
-                          controller: _passwordController,
-                        ),
-                        Visibility(
-                          visible: isSignUp,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(height: 10),
-                              Text("Confirm Password", style: TextStyle(
-                                color: Color(0xF22F2F2F),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              )),
-                              TextField(
-                                obscureText: true,
-                                focusNode: confirmpwFocusNode,
-                                controller: _pwMatchController,
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        ElevatedButton(
-                          onPressed: () {
-                            if (isSignUp) {
-                              _signUp();
-                            }
-                            else {
-                              _signIn();
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(0), // Adjust the borderRadius as needed
+                        ],
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Visibility(
+                            visible: isSignUp,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 20),
+                                Text("Username", style: TextStyle(
+                                  color: Color(0xF22F2F2F),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                )),
+                                TextField (
+                                  focusNode: userNameFocusNode,
+                                  controller: _userNameController,
+                                ),
+              
+                              ],
                             ),
-                            elevation: 8,
-                            foregroundColor: Colors.white, backgroundColor: Color(0xFF58E47F),
                           ),
-                          child: Text("Sign ${isSignUp ? 'up' : 'in'}"),
-                        ),
-                      ],
+                          SizedBox(height: 10),
+                          Text("Email", style: TextStyle(
+                            color: Color(0xF22F2F2F),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          )),
+                          TextField(
+                            focusNode: textFocusNode,
+                            controller: _emailController,
+                          ),
+                          SizedBox(height: 10),
+                          Text("Password", style: TextStyle(
+                            color: Color(0xF22F2F2F),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          )),
+                          TextField(
+                            obscureText: true,
+                            focusNode: pwFocusNode,
+                            controller: _passwordController,
+                          ),
+                          Visibility(
+                            visible: isSignUp,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 10),
+                                Text("Confirm Password", style: TextStyle(
+                                  color: Color(0xF22F2F2F),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                )),
+                                TextField(
+                                  obscureText: true,
+                                  focusNode: confirmpwFocusNode,
+                                  controller: _pwMatchController,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          ElevatedButton(
+                            onPressed: () {
+                              if (isSignUp) {
+                                _signUp();
+                              }
+                              else {
+                                _signIn();
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(0), // Adjust the borderRadius as needed
+                              ),
+                              elevation: 8,
+                              foregroundColor: Colors.white, backgroundColor: Color(0xFF58E47F),
+                            ),
+                            child: Text("Sign ${isSignUp ? 'up' : 'in'}"),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                    transform: Matrix4.translationValues(0, containerOffset, 0),
-                    child: TextButton(onPressed: () {
-                      setState(() {
-                        isSignUp = !isSignUp;
-                      });
-                    },
-                      child: Text("Sign ${isSignUp ? 'in' : 'up'}", style: TextStyle(color: Color(0xF22F2F2F)))
+                    AnimatedContainer(
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      transform: Matrix4.translationValues(0, containerOffset, 0),
+                      child: TextButton(onPressed: () {
+                        setState(() {
+                          isSignUp = !isSignUp;
+                        });
+                      },
+                        child: Text("Sign ${isSignUp ? 'in' : 'up'}", style: TextStyle(color: Color(0xF22F2F2F)))
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
