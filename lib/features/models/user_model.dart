@@ -8,6 +8,7 @@ class UserModel {
   late int treeLevel;
   late DateTime streak;
   late bool isTreeAlive;
+  //late DateTime lastLoginDate;
 
   UserModel({ required this.uid, required this.username, required this.treeLevel, required this.streak, required this.isTreeAlive});
 
@@ -29,9 +30,11 @@ class UserModel {
   Future<String> calculateTreeStatus(BudgetModel budgetModel, List<PurchaseModel> purchases) async {
     String typeOfTree = "tree";
 
-    if (!isTreeAlive && DateTime.now().day == 1) {
+    // Have to update this part of the code since the tree only will reset if the user logs in on the first day of the month. Otherwise, the tree will stay dead
+    if (!isTreeAlive && /*DateTime.now().day == 1 if month they last logged in has changed*/) {
       typeOfTree = "tree";
       isTreeAlive = true;
+      //this will update and begin the tree growth when the user logs in again to revive their tree
       streak = DateTime.now();
 
       await FirebaseFirestore.instance.collection('user').doc(uid).update({
@@ -59,6 +62,7 @@ class UserModel {
     }
   }
 
+  //Probably code that if the tree is dead, a new tree won't grow until the user logs in again.
   Future<int> calculateTreeLevel(BudgetModel budgetModel, List<PurchaseModel> purchases) async {
     int streakTime = calculateStreak(streak);
     if (streakTime > 30) {
