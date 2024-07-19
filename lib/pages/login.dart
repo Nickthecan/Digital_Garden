@@ -238,7 +238,8 @@ class _LoginState extends State<Login> {
           username: username,
           treeLevel: userSnapshot['treeLevel'],
           streak: userSnapshot['streak'].toDate(),
-          isTreeAlive: userSnapshot['isTreeAlive']
+          isTreeAlive: userSnapshot['isTreeAlive'],
+          lastloginDate: userSnapshot['lastLoginDate'].toDate()
         );
         BudgetModel? budgetModel = await _fetchBudget(userModel);
         List<PurchaseModel> purchaseList = await _fetchPurchases(userModel);
@@ -280,6 +281,7 @@ class _LoginState extends State<Login> {
           'treeLevel': 1,
           'streak': Timestamp.now(),
           'isTreeAlive': true,
+          'lastLoginDate': TimeStamp.now(),
         });
         UserModel userModel = UserModel(
           uid: user.uid,
@@ -287,6 +289,7 @@ class _LoginState extends State<Login> {
           treeLevel: 1,
           streak: DateTime.now(),
           isTreeAlive: true
+          lastLoginDate: DateTime.now(),
         );
 
         BudgetModel? budgetModel = await _fetchBudget(userModel);
