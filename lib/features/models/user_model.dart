@@ -8,9 +8,9 @@ class UserModel {
   late int treeLevel;
   late DateTime streak;
   late bool isTreeAlive;
-  //late DateTime lastLoginDate;
+  late DateTime lastLoginDate;
 
-  UserModel({ required this.uid, required this.username, required this.treeLevel, required this.streak, required this.isTreeAlive});
+  UserModel({ required this.uid, required this.username, required this.treeLevel, required this.streak, required this.isTreeAlive, required this.lastLoginDate });
 
   editUserName(String newUserName) async {
     username = newUserName;
@@ -31,7 +31,7 @@ class UserModel {
     String typeOfTree = "tree";
 
     // Have to update this part of the code since the tree only will reset if the user logs in on the first day of the month. Otherwise, the tree will stay dead
-    if (!isTreeAlive && /*DateTime.now().day == 1 if month they last logged in has changed*/) {
+    if (!isTreeAlive && DateTime.now().month > lastLoginDate.month) {
       typeOfTree = "tree";
       isTreeAlive = true;
       //this will update and begin the tree growth when the user logs in again to revive their tree
@@ -107,6 +107,13 @@ class UserModel {
     return onFire.inDays;
   }
 
+  updateLastLoginDate() async {
+    lastLoginDate = DateTime.now();
+    await FirebaseFirestore.instance.collection('lastLogin').doc(uid).update({
+      'lastLoginDate': Timestamp.now(),
+    });
+  }
+  
   resetStreak() async {
     streak = DateTime.now();
     await FirebaseFirestore.instance.collection('user').doc(uid).update({
