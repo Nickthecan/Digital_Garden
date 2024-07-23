@@ -37,6 +37,7 @@ class _MainMenuState extends State<MainMenu> {
     budgetModel = data['budgetModel'];
     purchases = data['purchaseList'];
     treeStatus = await userModel.calculateTreeStatus(budgetModel, purchases);
+    userModel.updateLastLoginDate();
 
     setState(() {
       isLoading = false;

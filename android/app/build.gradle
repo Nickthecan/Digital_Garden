@@ -50,9 +50,9 @@ android {
         applicationId "nickthecan.com.digital_garden"
         minSdkVersion 21
         //noinspection EditedTargetSdkVersion
-        targetSdkVersion 33
-        versionCode 2
-        versionName "1.0.1"
+        targetSdkVersion 34
+        versionCode 3
+        versionName "1.0.2"
     }
 
     signingConfigs {

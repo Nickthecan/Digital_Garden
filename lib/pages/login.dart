@@ -229,41 +229,46 @@ class _LoginState extends State<Login> {
 
     User? user = await _auth.signIn(email, password);
 
-    if (user != null) {
-      DocumentSnapshot userSnapshot = await FirebaseFirestore.instance.collection('user').doc(user.uid).get();
-      if (userSnapshot.exists) {
-        String username = userSnapshot['username'];
-        UserModel userModel = UserModel(
-          uid: user.uid,
-          username: username,
-          treeLevel: userSnapshot['treeLevel'],
-          streak: userSnapshot['streak'].toDate(),
-          isTreeAlive: userSnapshot['isTreeAlive'],
-          lastloginDate: userSnapshot['lastLoginDate'].toDate()
-        );
-        BudgetModel? budgetModel = await _fetchBudget(userModel);
-        List<PurchaseModel> purchaseList = await _fetchPurchases(userModel);
-
-        if (budgetModel != null) {
-          Navigator.pushNamed(context, "/main_menu", arguments: {
-            'userModel': userModel,
-            'budgetModel': budgetModel,
-            'purchaseList': purchaseList,
-          });
-        }
-        else {
-          print("Failed to fetch budget");
-        }
-        _emailController.clear();
-        _passwordController.clear();
-      }
-      else{
-        print('User data not found in Firestore Database');
-      }
-    }
-    else {
+    if (user == null) {
       print("Error occurred");
+      return;
     }
+
+    DocumentSnapshot userSnapshot = await FirebaseFirestore.instance.collection('user').doc(user.uid).get();
+
+    if (!userSnapshot.exists) {
+      print('User data not found in Firestore Database');
+      return;
+    }
+
+    UserModel userModel = _createUserModel(user, userSnapshot);
+    BudgetModel? budgetModel = await _fetchBudget(userModel);
+
+    if (budgetModel == null) {
+      print("Failed to fetch budget");
+      return;
+    }
+
+    List<PurchaseModel> purchaseList = await _fetchPurchases(userModel);
+
+    Navigator.pushNamed(context, "/main_menu", arguments: {
+      'userModel': userModel,
+      'budgetModel': budgetModel,
+      'purchaseList': purchaseList,
+    });
+    _emailController.clear();
+    _passwordController.clear();
+  }
+
+  UserModel _createUserModel(User user, DocumentSnapshot userSnapshot) {
+    return UserModel(
+        uid: user.uid,
+        username: userSnapshot['username'],
+        treeLevel: userSnapshot['treeLevel'],
+        streak: userSnapshot['streak'].toDate(),
+        isTreeAlive: userSnapshot['isTreeAlive'],
+        lastLoginDate: userSnapshot['lastLoginDate'].toDate()
+    );
   }
 
   void _signUp() async {
@@ -272,56 +277,55 @@ class _LoginState extends State<Login> {
     String password = _passwordController.text;
     String pwMatch = _pwMatchController.text;
 
-    if (password == pwMatch) {
-      User? user = await _auth.signUp(email, password);
-
-      if (user != null) {
-        await FirebaseFirestore.instance.collection('user').doc(user.uid).set({
-          'username': userName,
-          'treeLevel': 1,
-          'streak': Timestamp.now(),
-          'isTreeAlive': true,
-          'lastLoginDate': TimeStamp.now(),
-        });
-        UserModel userModel = UserModel(
-          uid: user.uid,
-          username: userName,
-          treeLevel: 1,
-          streak: DateTime.now(),
-          isTreeAlive: true
-          lastLoginDate: DateTime.now(),
-        );
-
-        BudgetModel? budgetModel = await _fetchBudget(userModel);
-        List<PurchaseModel> purchaseList = [];
-
-        await FirebaseFirestore.instance.collection('ids').doc(user.uid).set({
-          'newGoalID': 0,
-          'newPurchaseID': 0,
-        });
-
-        if (budgetModel != null) {
-          Navigator.pushNamed(context, "/main_menu", arguments: {
-            'userModel': userModel,
-            'budgetModel': budgetModel,
-            'purchaseList': purchaseList,
-          });
-        }
-        else {
-         print("Failed to fetch budget");
-        }
-        _userNameController.clear();
-        _emailController.clear();
-        _passwordController.clear();
-        _pwMatchController.clear();
-      }
-      else {
-        print("Error occurred");
-      }
-    }
-    else {
+    if (password != pwMatch) {
       print("Passwords do not match");
+      return;
     }
+
+    User? user = await _auth.signUp(email, password);
+    if (user == null) {
+      print("Error occurred when retrieving user");
+      return;
+    }
+
+    await FirebaseFirestore.instance.collection('user').doc(user.uid).set({
+      'username': userName,
+      'treeLevel': 1,
+      'streak': Timestamp.now(),
+      'isTreeAlive': true,
+      'lastLoginDate': Timestamp.now(),
+    });
+    UserModel userModel = UserModel(
+      uid: user.uid,
+      username: userName,
+      treeLevel: 1,
+      streak: DateTime.now(),
+      isTreeAlive: true,
+      lastLoginDate: DateTime.now(),
+    );
+
+    BudgetModel? budgetModel = await _fetchBudget(userModel);
+    List<PurchaseModel> purchaseList = [];
+
+    await FirebaseFirestore.instance.collection('ids').doc(user.uid).set({
+      'newGoalID': 0,
+      'newPurchaseID': 0,
+    });
+
+    if (budgetModel == null) {
+      print("Failed to fetch budget");
+      return;
+    }
+
+    Navigator.pushNamed(context, "/main_menu", arguments: {
+      'userModel': userModel,
+      'budgetModel': budgetModel,
+      'purchaseList': purchaseList,
+    });
+    _userNameController.clear();
+    _emailController.clear();
+    _passwordController.clear();
+    _pwMatchController.clear();
   }
 
   _fetchBudget(UserModel userModel) async {
